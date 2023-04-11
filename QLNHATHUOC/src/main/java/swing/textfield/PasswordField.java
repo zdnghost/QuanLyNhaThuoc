@@ -166,10 +166,7 @@ public class PasswordField extends JPasswordField {
         } else {
             g2.setColor(new Color(150, 150, 150));
         }
-        g2.draw(new RoundRectangle2D.Double(0, 0, width-1, height, height/4, height/4));
-        g2.fillRect(height/6, height - 1, width-height/3, 1);
-        
-        
+        g2.draw(new RoundRectangle2D.Double(0, 0, width-1, height-1, height/4, height/4));
         createHintText(g2);
         createLineStyle(g2);
         if (showAndHide) {
@@ -211,16 +208,20 @@ public class PasswordField extends JPasswordField {
             g2.setColor(lineColor);
             g2.draw(new RoundRectangle2D.Double(0, 0, getWidth()-1, getHeight(), getHeight()/4, getHeight()/4));
             double size;
-            if (show) {
-                size = width * (1 - location);
-            } else {
-                size = width * location;
-                g2.setStroke(new BasicStroke(1.5f));
-                g2.draw(new RoundRectangle2D.Double(0, 0, getWidth()-1, getHeight(), getHeight()/4, getHeight()/4));
-            }
-            double x = (width - size) / 2;
-            g2.fillRect((int) (x + getHeight()/6), height - 2, (int) size- getHeight()/3, 2);
-            g2.fillRect((int) (x + getHeight()/6), 0, (int) size- getHeight()/3, 2);
+			
+			 if (show) 
+			 { 
+				 size = width * (1 - location); 
+				 } 
+			 else { 
+				 size = width * location;
+				 g2.setStroke(new BasicStroke(3));
+			 g2.draw(new RoundRectangle2D.Double(0, 0, getWidth()-1, getHeight()-1,getHeight()/4, getHeight()/4)); 
+			 } 
+			 double x = (width - size) / 2;
+			 //g2.fillRect((int) (x + getHeight()/6), height - 2, (int) size- getHeight()/3,2);
+			// g2.fillRect((int) (x + getHeight()/6), 0, (int) size- getHeight()/3, 2);
+			 
             
             
            }

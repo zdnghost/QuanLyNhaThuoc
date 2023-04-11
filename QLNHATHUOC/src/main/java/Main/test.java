@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import swing.textfield.TextField;
 import swing.textfield.PasswordField;
 import java.awt.Color;
+
+import swing.menu.menuslide;
 import swing.panel.RoundPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -19,6 +21,7 @@ import javax.swing.SwingConstants;
 public class test extends JFrame {
 
 	public test() {
+		setResizable(false);
         initComponents();
         getContentPane().setBackground(new Color(250, 250, 250));
     }
@@ -31,65 +34,19 @@ public class test extends JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        panelRound1 = new RoundPanel();
-        panelRound1.setRoundBottomLeft(50);
-        panelRound1.setRoundTopRight(50);
-
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        panelRound1.setBackground(new java.awt.Color(84, 137, 242));
-        panelRound1.setRoundBottomRight(50);
-        panelRound1.setRoundTopLeft(50);
-
-        GroupLayout panelRound1Layout = new GroupLayout(panelRound1);
-        panelRound1.setLayout(panelRound1Layout);
-        panelRound1Layout.setHorizontalGroup(
-            panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
-        );
-        panelRound1Layout.setVerticalGroup(
-            panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 161, Short.MAX_VALUE)
-        );
+        menuslide a=new menuslide();
         
-        text text_ = new text();
-        text_.setHint("User");
         
-        PasswordField passwordField = new PasswordField();
-        passwordField.setLabelText("Password");
-        passwordField.setShowAndHide(true);
-        passwordField.setLineColor(new Color(204, 0, 0));
         
-        TextField textField = new TextField();
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addGap(31)
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
-        				.addComponent(textField, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        				.addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-        				.addComponent(text_, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        			.addGap(98)
-        			.addComponent(panelRound1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(142, Short.MAX_VALUE))
+        		.addGap(0, 628, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addGap(24)
-        			.addComponent(text_, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(314, Short.MAX_VALUE))
-        		.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-        			.addContainerGap(200, Short.MAX_VALUE)
-        			.addComponent(panelRound1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addGap(111))
+        	layout.createParallelGroup(Alignment.TRAILING)
+        		.addGap(0, 472, Short.MAX_VALUE)
         );
         getContentPane().setLayout(layout);
 
@@ -131,7 +88,4 @@ public class test extends JFrame {
             }
         });
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private RoundPanel panelRound1;
 	}

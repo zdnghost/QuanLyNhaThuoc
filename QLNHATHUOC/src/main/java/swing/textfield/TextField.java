@@ -1,5 +1,6 @@
 package swing.textfield;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -11,6 +12,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
+
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import org.jdesktop.animation.timing.Animator;
@@ -103,7 +106,7 @@ public class TextField extends JTextField {
 
     @Override
     public void paint(Graphics grphcs) {
-        super.paint(grphcs);
+    	super.paint(grphcs);
         Graphics2D g2 = (Graphics2D) grphcs;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
@@ -114,7 +117,7 @@ public class TextField extends JTextField {
         } else {
             g2.setColor(new Color(150, 150, 150));
         }
-        g2.fillRect(2, height - 1, width - 4, 1);
+        g2.draw(new RoundRectangle2D.Double(0, 0, width-1, height-1, height/4, height/4));
         createHintText(g2);
         createLineStyle(g2);
         g2.dispose();
@@ -137,23 +140,33 @@ public class TextField extends JTextField {
         } else {
             size = 18;
         }
-        g2.drawString(labelText, in.right, (int) (in.top + textY + ft.getAscent() - size));
+        g2.drawString(labelText, in.left, (int) (in.top + textY + ft.getAscent() - size));
     }
 
     private void createLineStyle(Graphics2D g2) {
         if (isFocusOwner()) {
-            double width = getWidth() - 4;
+            double width = getWidth();
             int height = getHeight();
             g2.setColor(lineColor);
+            g2.draw(new RoundRectangle2D.Double(0, 0, getWidth()-1, getHeight(), getHeight()/4, getHeight()/4));
             double size;
-            if (show) {
-                size = width * (1 - location);
-            } else {
-                size = width * location;
-            }
-            double x = (width - size) / 2;
-            g2.fillRect((int) (x + 2), height - 2, (int) size, 2);
-        }
+			
+			 if (show) 
+			 { 
+				 size = width * (1 - location); 
+				 } 
+			 else { 
+				 size = width * location;
+				 g2.setStroke(new BasicStroke(3));
+			 g2.draw(new RoundRectangle2D.Double(0, 0, getWidth()-1, getHeight()-1,getHeight()/4, getHeight()/4)); 
+			 } 
+			 double x = (width - size) / 2;
+			 //g2.fillRect((int) (x + getHeight()/6), height - 2, (int) size- getHeight()/3,2);
+			// g2.fillRect((int) (x + getHeight()/6), 0, (int) size- getHeight()/3, 2);
+			 
+            
+            
+           }
     }
 
     @Override
