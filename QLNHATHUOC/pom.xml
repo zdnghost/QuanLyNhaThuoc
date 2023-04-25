@@ -5,26 +5,33 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>QLNHATHUOC</name>
   <dependencies>
-  <dependency>
+  	<dependency>
     <groupId>net.java.timingframework</groupId>
     <artifactId>timingframework-swing</artifactId>
     <version>4.1.0</version>
-</dependency>
-  
-  <dependency>
+	</dependency>
+  	<dependency>
 	<groupId>net.java.dev.timingframework</groupId>
 	<artifactId>timingframework</artifactId>
 	<version>1.0</version>
-</dependency>
-   <dependency>
+	</dependency>
+   	<dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
-   </dependency>
-  
+   	</dependency>
+   <dependency>
+    <groupId>com.formdev</groupId>
+    <artifactId>flatlaf</artifactId>
+    <version>3.1</version>
+	</dependency>	
+	<dependency>
+    <groupId>com.toedter</groupId>
+    <artifactId>jcalendar</artifactId>
+    <version>1.4</version>
+	</dependency>
+  	</dependencies>
+  	
 
-   
-   
-  </dependencies>
-  
+
 </project>

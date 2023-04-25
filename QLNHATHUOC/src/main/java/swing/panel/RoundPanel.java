@@ -2,6 +2,7 @@ package swing.panel;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.geom.Area;
@@ -10,6 +11,7 @@ import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.Dimension;
 
 public class RoundPanel extends JPanel {
 	private int roundTopLeft=0;
