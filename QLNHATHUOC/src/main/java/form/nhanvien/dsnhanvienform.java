@@ -17,6 +17,8 @@ import javax.swing.JCheckBox;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class dsnhanvienform extends JPanel {
 	private JTextField textField;
@@ -42,6 +44,10 @@ public class dsnhanvienform extends JPanel {
 		btnpanel.add(rndbtnThm);
 		
 		RoundButton rndbtnXut = new RoundButton();
+		rndbtnXut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		rndbtnXut.setText("Xuất file danh sách");
 		rndbtnXut.setFocusPainted(false);
 		btnpanel.add(rndbtnXut);
@@ -100,9 +106,6 @@ public class dsnhanvienform extends JPanel {
 					.addGap(24))
 		);
 		
-		JCheckBox chckbxDcS = new JCheckBox("Dược sĩ");
-		chckbxDcS.setFocusPainted(false);
-		
 		JLabel lblNewLabel_1 = new JLabel("Ngày vào làm");
 		
 		JDateChooser dateChooser = new JDateChooser();
@@ -119,9 +122,7 @@ public class dsnhanvienform extends JPanel {
 					.addComponent(lblHotCht, GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
 					.addGap(10)
 					.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-					.addGap(6)
-					.addComponent(chckbxDcS, GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
-					.addGap(20)
+					.addGap(109)
 					.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
 					.addGap(10)
 					.addComponent(dateChooser, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
@@ -145,9 +146,6 @@ public class dsnhanvienform extends JPanel {
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(27)
 					.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_roundPanel.createSequentialGroup()
-					.addGap(26)
-					.addComponent(chckbxDcS))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(31)
 					.addComponent(lblNewLabel_1))

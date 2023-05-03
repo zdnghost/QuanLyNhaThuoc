@@ -8,12 +8,13 @@ import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
+import form.baocao.baocao;
 import form.ketoa.tabketoa;
 import form.nhacungcap.tabnhacungcap;
 import form.nhanvien.tabnhanvien;
 import form.nhaphang.tabnhaphang;
 import form.thuoc.tabkhothuoc;
-import swing.menu.menuslide;
+import form.menu.menuslide;
 import java.awt.Color;
 import swing.button.RoundButton;
 import java.awt.Font;
@@ -28,19 +29,19 @@ public class testmenu extends JFrame {
 	 private menuslide menuslide = new menuslide(this);
 	 private JPanel panel = new JPanel();
 	 public static JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.RIGHT);
-	
+	 
+	 public tabnhacungcap nhacungcap=new tabnhacungcap();
 	 public tabnhaphang nhaphang= new tabnhaphang();
 	 public tabketoa ketoa= new tabketoa();  
 	 public tabnhanvien nhanvien= new tabnhanvien();
-	 public tabnhacungcap nhacungcap=new tabnhacungcap();
 	 public tabkhothuoc thuoc= new tabkhothuoc();
-	
+	 public baocao home=new baocao();
 	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-	
+		
 			EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -63,12 +64,12 @@ public class testmenu extends JFrame {
 		setBounds(100, 100, 1280, 800);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+		setTitle("Quản lý nhà thuốc");
 		menuslide.setBounds(0, 0, 286, 761);
 		menuslide.menu.setBackground(new Color(0, 144, 219));
 		menuslide.menu.setLocation(25, 0);
 		menuslide.menu.setSize(0, 0);
-		
+		setResizable(false);
 		panel.setBackground(new Color(0, 144, 219));
 		panel.setBounds(0, 0, 1264, 50);
 		contentPane.setLayout(null);
@@ -91,25 +92,22 @@ public class testmenu extends JFrame {
 		JLabel lblUserInformation = new JLabel("User name:");
 		lblUserInformation.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUserInformation.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		panel_1.add(lblUserInformation);
-		
+		panel_1.add(lblUserInformation);		
 		JLabel lblUser = new JLabel("Admin");
 		lblUser.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUser.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_1.add(lblUser);
 		
-		
 		tabbedPane.setBorder(null);
 		tabbedPane.setRequestFocusEnabled(false);
 		tabbedPane.setBounds(50, 50, 1239, 711);
 		contentPane.add(tabbedPane);
-		
-		tabbedPane.addTab("",nhacungcap);
+		tabbedPane.addTab("",home);
 		tabbedPane.addTab("",thuoc);
 		tabbedPane.addTab("",nhaphang);
+		tabbedPane.addTab("",nhacungcap);
 		tabbedPane.addTab("",ketoa);
 		tabbedPane.addTab("",nhanvien);
-		
 	}
 	
 }

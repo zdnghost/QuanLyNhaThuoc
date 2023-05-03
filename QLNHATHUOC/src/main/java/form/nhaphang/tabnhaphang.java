@@ -16,13 +16,12 @@ public class tabnhaphang extends JPanel {
 	public tabnhaphang() {
 		setSize(1213,707);
 		setLayout(null);
-		tabbedPane.setBounds(0, -25, 1213,732);
+		tabbedPane.setBounds(0, -35, 1213,742);
 		add(tabbedPane);
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-				
-				tabbedPane.setBounds(0,-25,getWidth(),tabbedPane.getHeight());
+				tabbedPane.setBounds(0,-35,getWidth(),tabbedPane.getHeight());
 			}
 		});
 		tabbedPane.addTab(null, ds);

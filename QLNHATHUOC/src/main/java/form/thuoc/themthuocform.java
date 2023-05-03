@@ -136,6 +136,8 @@ public class themthuocform extends JPanel {
 		JButton btnNewButton = new JButton("New button");
 		
 		JButton btnNewButton_1 = new JButton("New button");
+		
+		JLabel lblNewLabel_1_2_2_1 = new JLabel("(Nếu đây là đơn vị cơ bản hãy nhập số 1)");
 		GroupLayout gl_roundPanel = new GroupLayout(roundPanel);
 		gl_roundPanel.setHorizontalGroup(
 			gl_roundPanel.createParallelGroup(Alignment.LEADING)
@@ -169,10 +171,10 @@ public class themthuocform extends JPanel {
 						.addGroup(gl_roundPanel.createSequentialGroup()
 							.addComponent(lblNewLabel_2_2, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGroup(gl_roundPanel.createParallelGroup(Alignment.TRAILING)
+					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(Hang, 0, 385, Short.MAX_VALUE)
-						.addGroup(Alignment.LEADING, gl_roundPanel.createSequentialGroup()
-							.addGroup(gl_roundPanel.createParallelGroup(Alignment.TRAILING, false)
+						.addGroup(gl_roundPanel.createSequentialGroup()
+							.addGroup(gl_roundPanel.createParallelGroup(Alignment.TRAILING)
 								.addComponent(Donvi, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(Phanloai, Alignment.LEADING, 0, 283, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -190,8 +192,9 @@ public class themthuocform extends JPanel {
 						.addGroup(gl_roundPanel.createSequentialGroup()
 							.addComponent(lblNewLabel_1_2_2, GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
 							.addGap(10)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-							.addGap(254)))
+							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblNewLabel_1_2_2_1, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)))
 					.addGap(60))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(240)
@@ -234,7 +237,8 @@ public class themthuocform extends JPanel {
 					.addGap(18)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNewLabel_1_2_2, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_1_2_2_1, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(rndbtnThm, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 					.addGap(98))

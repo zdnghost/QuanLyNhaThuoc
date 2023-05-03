@@ -3,13 +3,12 @@ package form.nhacungcap;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 public class tabnhacungcap extends JPanel {
 	public static JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-	static nhacungcapform all=new nhacungcapform();
+	public dsnhacungcapform ds=new dsnhacungcapform();
 	/**
 	 * Create the panel.
 	 */
@@ -18,13 +17,14 @@ public class tabnhacungcap extends JPanel {
 		setLayout(null);
 		tabbedPane.setBounds(0, -25, 1213,732);
 		add(tabbedPane);
-		tabbedPane.addTab("", all);
+		tabbedPane.addTab(null, ds);
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-				tabbedPane.setBounds(0,-25,getWidth(),getHeight()+25);
+				tabbedPane.setBounds(0,-25,getWidth(),tabbedPane.getHeight());
 			}
 		});
+		
 	}
 
 }

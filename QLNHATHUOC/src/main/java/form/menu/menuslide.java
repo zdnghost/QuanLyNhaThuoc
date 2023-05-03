@@ -1,4 +1,4 @@
-package swing.menu;
+package form.menu;
 
 import javax.swing.JPanel;
 
@@ -25,6 +25,7 @@ import org.jdesktop.animation.timing.interpolation.PropertySetter;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
+import control.menu.menucontrol;
 import form.main.testmenu;
 import swing.button.RoundButton;
 
@@ -57,10 +58,12 @@ public class menuslide extends JPanel {
 	private Animator a;
 	private Animator b;
 	private Animator c;
-	RoundButton btnKho = new RoundButton();
-	RoundButton btnThuoc = new RoundButton();
-	RoundButton btnCungcap = new RoundButton();
-	RoundButton btnKetoa = new RoundButton();
+	public static RoundButton btnNhaphang = new RoundButton();
+	public static RoundButton btnThuoc = new RoundButton();
+	public static RoundButton btnCungcap = new RoundButton();
+	public static RoundButton btnKetoa = new RoundButton();
+	public static RoundButton btnUser = new RoundButton();
+	public static RoundButton btnHome = new RoundButton();
 	public menuslide(JFrame fram) {
 
 		
@@ -79,7 +82,7 @@ public class menuslide extends JPanel {
 			}
 		});
 		
-		btnMenu.setIcon(getImage("/swing/menu/menu.png",50,50));
+		btnMenu.setIcon(getImage("/form/menu/menu.png",50,50));
 		setLayout(null);
 		btnMenu.setLocation(255,0);
 		add(btnMenu);
@@ -91,20 +94,12 @@ public class menuslide extends JPanel {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		menu.add(lblNewLabel);
-		btnKho.setFocusable(false);
-		btnKho.setFocusTraversalKeysEnabled(false);
-		btnKho.setFocusPainted(false);
-		btnKho.addActionListener(new ActionListener() {
+		btnNhaphang.setFocusable(false);
+		btnNhaphang.setFocusTraversalKeysEnabled(false);
+		btnNhaphang.setFocusPainted(false);
+		btnNhaphang.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				btnKho.setColor(new Color(255, 255, 255,90));
-				btnThuoc.setColor(new Color(0, 144, 219));
-				btnKetoa.setColor(new Color(0, 144, 219));
-				btnCungcap.setColor(new Color(0, 144, 219));
-				//
-				btnKho.setColorOver(new Color(255, 255, 255,90));
-				btnThuoc.setColorOver(new Color(255, 255, 255,30));
-				btnThuoc.setColorOver(new Color(255, 255, 255,30));
-				btnThuoc.setColorOver(new Color(255, 255, 255,30));
+			menucontrol.Nhap();
 			}
 		});
 		btnThuoc.setFocusable(false);
@@ -112,15 +107,7 @@ public class menuslide extends JPanel {
 		btnThuoc.setFocusPainted(false);
 		btnThuoc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				btnThuoc.setColor(new Color(255, 255, 255,90));
-				btnKho.setColor(new Color(0, 144, 219));
-				btnKetoa.setColor(new Color(0, 144, 219));
-				btnCungcap.setColor(new Color(0, 144, 219));
-				//
-				btnThuoc.setColorOver(new Color(255, 255, 255,90));
-				btnKho.setColorOver(new Color(255, 255, 255,30));
-				btnKetoa.setColorOver(new Color(255, 255, 255,30));
-				btnCungcap.setColorOver(new Color(255, 255, 255,30));
+				menucontrol.Kho();
 			}
 		});
 		btnKetoa.setFocusTraversalKeysEnabled(false);
@@ -128,15 +115,7 @@ public class menuslide extends JPanel {
 		btnKetoa.setFocusPainted(false);
 		btnKetoa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				btnKetoa.setColor(new Color(255, 255, 255,90));
-				btnThuoc.setColor(new Color(0, 144, 219));
-				btnKho.setColor(new Color(0, 144, 219));
-				btnCungcap.setColor(new Color(0, 144, 219));
-				//
-				btnKetoa.setColorOver(new Color(255, 255, 255,90));
-				btnCungcap.setColorOver(new Color(255, 255, 255,30));
-				btnKho.setColorOver(new Color(255, 255, 255,30));
-				btnThuoc.setColorOver(new Color(255, 255, 255,30));
+				menucontrol.Toa();
 			}
 		});
 		btnCungcap.setFocusTraversalKeysEnabled(false);
@@ -144,31 +123,23 @@ public class menuslide extends JPanel {
 		btnCungcap.setFocusable(false);
 		btnCungcap.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				btnCungcap.setColor(new Color(255, 255, 255,90));
-				btnThuoc.setColor(new Color(0, 144, 219));
-				btnKetoa.setColor(new Color(0, 144, 219));
-				btnKho.setColor(new Color(0, 144, 219));
-				//
-				btnCungcap.setColorOver(new Color(255, 255, 255,90));
-				btnThuoc.setColorOver(new Color(255, 255, 255,30));
-				btnKho.setColorOver(new Color(255, 255, 255,30));
-				btnKetoa.setColorOver(new Color(255, 255, 255,30));
+				menucontrol.Nhacungcap();
 			}
 		});
-		btnKho.setColorClick(new Color(255, 255, 255,90));
-		btnKho.setColorOver(new Color(255, 255, 255,30));
+		btnNhaphang.setColorClick(new Color(255, 255, 255,90));
+		btnNhaphang.setColorOver(new Color(255, 255, 255,30));
 		
 
-		btnKho.setBorderPainted(false);
-		btnKho.setColor(new Color(0, 144, 219));
-		btnKho.setBackground(new Color(0, 144, 219));
-		btnKho.setFont(new Font("Dialog", Font.PLAIN, 20));
-		btnKho.setHorizontalAlignment(SwingConstants.LEFT);
-		btnKho.setBorderColor(new Color(0, 144, 219));
-		btnKho.setBounds(-15, 50, 320, 50);
-		menu.add(btnKho);
-		btnKho.setIcon(getImage("/swing/menu/warehouse.png",50,50));
-		btnKho.setText("    Kho hàng");
+		btnNhaphang.setBorderPainted(false);
+		btnNhaphang.setColor(new Color(0, 144, 219));
+		btnNhaphang.setBackground(new Color(0, 144, 219));
+		btnNhaphang.setFont(new Font("Dialog", Font.PLAIN, 20));
+		btnNhaphang.setHorizontalAlignment(SwingConstants.LEFT);
+		btnNhaphang.setBorderColor(new Color(0, 144, 219));
+		btnNhaphang.setBounds(-15, 150, 320, 50);
+		menu.add(btnNhaphang);
+		btnNhaphang.setIcon(getImage("/form/menu/warehouse.png",50,50));
+		btnNhaphang.setText("    Nhập hàng");
 		btnThuoc.setColorClick(new Color(255, 255, 255,90));
 		btnThuoc.setColorOver(new Color(255, 255, 255,30));
 		
@@ -181,13 +152,13 @@ public class menuslide extends JPanel {
 		btnThuoc.setBorderColor(new Color(0, 144, 219));
 		btnThuoc.setBounds(-15, 100, 320, 50);
 		menu.add(btnThuoc);
-		btnThuoc.setIcon(getImage("/swing/menu/pill.png",50,50));
+		btnThuoc.setIcon(getImage("/form/menu/pill.png",50,50));
 		btnThuoc.setText("    Danh mục thuốc");
 		btnCungcap.setColorClick(new Color(255, 255, 255,90));
 		btnCungcap.setColorOver(new Color(255, 255, 255,30));
 		
 
-		btnCungcap.setIcon(getImage("/swing/menu/organization.png",50,50));
+		btnCungcap.setIcon(getImage("/form/menu/organization.png",50,50));
 		btnCungcap.setText("    Nhà cung cấp");
 		btnCungcap.setHorizontalAlignment(SwingConstants.LEFT);
 		btnCungcap.setBorderPainted(false);
@@ -195,21 +166,65 @@ public class menuslide extends JPanel {
 		btnCungcap.setBackground(new Color(0, 144, 219));
 		btnCungcap.setFont(new Font("Dialog", Font.PLAIN, 20));
 		btnCungcap.setBorderColor(new Color(0, 144, 219));
-		btnCungcap.setBounds(-15, 150, 320, 50);
+		btnCungcap.setBounds(-15, 200, 320, 50);
 		menu.add(btnCungcap);
 		btnKetoa.setColorClick(new Color(255, 255, 255,90));
 		btnKetoa.setColorOver(new Color(255, 255, 255,30));
 		
 		btnKetoa.setHorizontalAlignment(SwingConstants.LEFT);
-		btnKetoa.setIcon(getImage("/swing/menu/article.png",50,50));
+		btnKetoa.setIcon(getImage("/form/menu/article.png",50,50));
 		btnKetoa.setText("    Kê toa");
 		btnKetoa.setBorderPainted(false);
 		btnKetoa.setColor(new Color(0, 144, 219));
 		btnKetoa.setBackground(new Color(0, 144, 219));
 		btnKetoa.setFont(new Font("Dialog", Font.PLAIN, 20));
 		btnKetoa.setBorderColor(new Color(0, 144, 219));
-		btnKetoa.setBounds(-15, 200, 320, 50);
+		btnKetoa.setBounds(-15, 250, 320, 50);
 		menu.add(btnKetoa);
+		btnUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				menucontrol.User();
+			}
+		});
+		
+		btnUser.setHorizontalAlignment(SwingConstants.LEFT);
+		btnUser.setIcon(getImage("/form/menu/user.png",50,50));
+		btnUser.setText("    Nhân viên");
+		btnUser.setHorizontalAlignment(SwingConstants.LEFT);
+		btnUser.setFont(new Font("Dialog", Font.PLAIN, 20));
+		btnUser.setFocusable(false);
+		btnUser.setFocusTraversalKeysEnabled(false);
+		btnUser.setFocusPainted(false);
+		btnUser.setColorOver(new Color(255, 255, 255, 30));
+		btnUser.setColorClick(new Color(255, 255, 255, 90));
+		btnUser.setColor(new Color(0, 144, 219));
+		btnUser.setBorderPainted(false);
+		btnUser.setBorderColor(new Color(0, 144, 219));
+		btnUser.setBackground(new Color(0, 144, 219));
+		btnUser.setBounds(-15, 300, 320, 50);
+		menu.add(btnUser);
+		btnHome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				menucontrol.Home();
+			}
+		});
+		
+		btnHome.setHorizontalAlignment(SwingConstants.LEFT);
+		btnHome.setIcon(getImage("/form/menu/home.png",50,50));
+		btnHome.setText("    Trang chính");
+		btnHome.setHorizontalAlignment(SwingConstants.LEFT);
+		btnHome.setFont(new Font("Dialog", Font.PLAIN, 20));
+		btnHome.setFocusable(false);
+		btnHome.setFocusTraversalKeysEnabled(false);
+		btnHome.setFocusPainted(false);
+		btnHome.setColorOver(new Color(255, 255, 255, 30));
+		btnHome.setColorClick(new Color(255, 255, 255, 90));
+		btnHome.setColor(new Color(0, 144, 219));
+		btnHome.setBorderPainted(false);
+		btnHome.setBorderColor(new Color(0, 144, 219));
+		btnHome.setBackground(new Color(0, 144, 219));
+		btnHome.setBounds(-15, 50, 320, 50);
+		menu.add(btnHome);
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {

@@ -120,13 +120,8 @@ public class khothuocform extends JPanel {
 		
 		JLabel lblHotCht = new JLabel("Hoạt chất");
 		
-		JLabel lblHmLng = new JLabel("Hàm lượng");
-		
 		hoatchat = new JTextField();
 		hoatchat.setColumns(10);
-		
-		hamluong = new JTextField();
-		hamluong.setColumns(10);
 		
 		RoundButton rndbtnLmMi = new RoundButton();
 		rndbtnLmMi.setText("Làm mới");
@@ -139,48 +134,44 @@ public class khothuocform extends JPanel {
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(10)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-						.addComponent(lblTnThuc, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
+						.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+						.addComponent(lblTnThuc, GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
 					.addGap(10)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(mathuoc, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-						.addComponent(tenthuoc, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
+						.addComponent(mathuoc, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+						.addComponent(tenthuoc, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
 					.addGap(14)
-					.addComponent(lblHng, GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+					.addComponent(lblHng, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
 					.addGap(8)
-					.addComponent(Hang, 0, 130, Short.MAX_VALUE)
+					.addComponent(Hang, 0, 136, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblHng_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-						.addComponent(lblnV, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
+						.addComponent(lblHng_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+						.addComponent(lblnV, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(Phanloai, 0, 206, Short.MAX_VALUE)
-						.addComponent(Donvi, 0, 206, Short.MAX_VALUE))
+						.addComponent(Phanloai, 0, 212, Short.MAX_VALUE)
+						.addComponent(Donvi, 0, 212, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblHotCht, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-						.addComponent(lblHmLng, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
+					.addComponent(lblHotCht, GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(hoatchat, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-						.addComponent(hamluong, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
+					.addComponent(hoatchat, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
 					.addGap(38)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(rndbtnLmMi, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-						.addComponent(rndbtnLmMi_1, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+						.addComponent(rndbtnLmMi, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+						.addComponent(rndbtnLmMi_1, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
 					.addGap(46))
 		);
 		gl_roundPanel.setVerticalGroup(
-			gl_roundPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_roundPanel.createSequentialGroup()
-					.addGroup(gl_roundPanel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(Alignment.LEADING, gl_roundPanel.createSequentialGroup()
+			gl_roundPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_roundPanel.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(rndbtnLmMi_1, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 							.addGap(9)
 							.addComponent(rndbtnLmMi, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_roundPanel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 							.addGroup(gl_roundPanel.createSequentialGroup()
 								.addGap(12)
 								.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
@@ -207,15 +198,11 @@ public class khothuocform extends JPanel {
 								.addGroup(gl_roundPanel.createParallelGroup(Alignment.BASELINE)
 									.addComponent(lblnV, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 									.addComponent(Donvi, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)))
-							.addGroup(Alignment.LEADING, gl_roundPanel.createSequentialGroup()
+							.addGroup(gl_roundPanel.createSequentialGroup()
 								.addGap(12)
 								.addGroup(gl_roundPanel.createParallelGroup(Alignment.BASELINE, false)
 									.addComponent(lblHotCht, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-									.addComponent(hoatchat, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
-								.addGap(8)
-								.addGroup(gl_roundPanel.createParallelGroup(Alignment.BASELINE, false)
-									.addComponent(lblHmLng, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-									.addComponent(hamluong, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)))))
+									.addComponent(hoatchat, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)))))
 					.addGap(10))
 		);
 		roundPanel.setLayout(gl_roundPanel);

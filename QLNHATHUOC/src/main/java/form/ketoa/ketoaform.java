@@ -15,8 +15,13 @@ import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
+
+import control.ketoa.ketoacontrol;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ketoaform extends JPanel {
 	private JTextField textField;
@@ -39,65 +44,45 @@ public class ketoaform extends JPanel {
 		rndbtnNhp.setText("Nhập");
 		
 		RoundButton rndbtnBack = new RoundButton();
+		rndbtnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ketoacontrol.back();
+			}
+		});
 		rndbtnBack.setText("Back");
 		
 		RoundPanel roundPanel_1_1 = new RoundPanel();
-		roundPanel_1_1.setLayout(null);
 		roundPanel_1_1.setBackground(Color.LIGHT_GRAY);
 		
 		JLabel lblThmThngTin = new JLabel("Thêm thuốc");
 		lblThmThngTin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblThmThngTin.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblThmThngTin.setBounds(79, 11, 229, 38);
-		roundPanel_1_1.add(lblThmThngTin);
 		
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("");
-		lblNewLabel_1_1_1_1.setBounds(35, 118, 91, 0);
-		roundPanel_1_1.add(lblNewLabel_1_1_1_1);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Mã thuốc");
-		lblNewLabel_1_2.setBounds(35, 58, 91, 14);
-		roundPanel_1_1.add(lblNewLabel_1_2);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(130, 55, 189, 20);
-		roundPanel_1_1.add(textField);
 		
 		JLabel lblNewLabel_1_1_2 = new JLabel("Đơn vị");
-		lblNewLabel_1_1_2.setBounds(35, 115, 91, 14);
-		roundPanel_1_1.add(lblNewLabel_1_1_2);
 		
 		JSpinner spinner = new JSpinner();
-		spinner.setBounds(130, 173, 86, 20);
-		roundPanel_1_1.add(spinner);
 		
 		JComboBox dv = new JComboBox();
-		dv.setBounds(130, 111, 189, 22);
-		roundPanel_1_1.add(dv);
 		
 		JLabel lblNewLabel_2 = new JLabel("Sl");
-		lblNewLabel_2.setBounds(35, 176, 91, 14);
-		roundPanel_1_1.add(lblNewLabel_2);
 		
 		RoundButton rndbtnThm = new RoundButton();
 		rndbtnThm.setText("Thêm");
-		rndbtnThm.setBounds(306, 235, 72, 29);
-		roundPanel_1_1.add(rndbtnThm);
 		
 		RoundButton rndbtnXa = new RoundButton();
 		rndbtnXa.setText("Xóa");
-		rndbtnXa.setBounds(217, 235, 72, 29);
-		roundPanel_1_1.add(rndbtnXa);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(130, 83, 189, 20);
-		roundPanel_1_1.add(textField_1);
 		
 		JLabel lblNewLabel_1_2_1 = new JLabel("Mã hãng thuốc");
-		lblNewLabel_1_2_1.setBounds(35, 86, 91, 14);
-		roundPanel_1_1.add(lblNewLabel_1_2_1);
 		
 		RoundPanel roundPanel_1 = new RoundPanel();
 		roundPanel_1.setBackground(Color.LIGHT_GRAY);
@@ -128,7 +113,7 @@ public class ketoaform extends JPanel {
 						.addGroup(gl_roundPanel_1.createSequentialGroup()
 							.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textField_3, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
 							.addGap(86))))
 		);
 		gl_roundPanel_1.setVerticalGroup(
@@ -158,62 +143,154 @@ public class ketoaform extends JPanel {
 			gl_roundPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_roundPanel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addGap(818)
-							.addComponent(lblNewLabel_1_2_1_2, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(rndbtnNhp, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_roundPanel.createSequentialGroup()
 							.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 								.addComponent(roundPanel_1_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(rndbtnBack, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
 								.addComponent(roundPanel_1, GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE)))
+							.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE))
+						.addGroup(Alignment.TRAILING, gl_roundPanel.createSequentialGroup()
+							.addComponent(lblNewLabel_1_2_1_2, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(rndbtnNhp, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		gl_roundPanel.setVerticalGroup(
 			gl_roundPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_roundPanel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 644, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(rndbtnNhp, GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-								.addGroup(gl_roundPanel.createSequentialGroup()
-									.addGap(3)
-									.addComponent(lblNewLabel_1_2_1_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-								.addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)))
+					.addGap(22)
+					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 625, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_roundPanel.createSequentialGroup()
 							.addComponent(rndbtnBack, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(roundPanel_1, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(roundPanel_1_1, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE)))
+					.addGap(19)
+					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(rndbtnNhp, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_roundPanel.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED, 3, Short.MAX_VALUE)
+							.addComponent(lblNewLabel_1_2_1_2, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		
 		JLabel lblNewLabel_1_2_1_1 = new JLabel("Ghi chú");
-		lblNewLabel_1_2_1_1.setBounds(35, 207, 91, 14);
-		roundPanel_1_1.add(lblNewLabel_1_2_1_1);
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(130, 204, 189, 20);
-		roundPanel_1_1.add(textField_2);
 		
 		JComboBox dv_1 = new JComboBox();
-		dv_1.setBounds(130, 140, 189, 22);
-		roundPanel_1_1.add(dv_1);
 		
 		JLabel lblNewLabel_1_1_2_1 = new JLabel("Lô thuốc");
-		lblNewLabel_1_1_2_1.setBounds(35, 144, 91, 14);
-		roundPanel_1_1.add(lblNewLabel_1_1_2_1);
+		GroupLayout gl_roundPanel_1_1 = new GroupLayout(roundPanel_1_1);
+		gl_roundPanel_1_1.setHorizontalGroup(
+			gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_roundPanel_1_1.createSequentialGroup()
+					.addGap(79)
+					.addComponent(lblThmThngTin, GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+					.addGap(80))
+				.addGroup(gl_roundPanel_1_1.createSequentialGroup()
+					.addGap(35)
+					.addComponent(lblNewLabel_1_2, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+					.addGap(4)
+					.addComponent(textField, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+					.addGap(69))
+				.addGroup(gl_roundPanel_1_1.createSequentialGroup()
+					.addGap(35)
+					.addComponent(lblNewLabel_1_2_1, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+					.addGap(4)
+					.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+					.addGap(69))
+				.addGroup(gl_roundPanel_1_1.createSequentialGroup()
+					.addGap(35)
+					.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblNewLabel_1_1_2, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+						.addComponent(lblNewLabel_1_1_1_1, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
+					.addGap(4)
+					.addComponent(dv, 0, 189, Short.MAX_VALUE)
+					.addGap(69))
+				.addGroup(gl_roundPanel_1_1.createSequentialGroup()
+					.addGap(35)
+					.addComponent(lblNewLabel_1_1_2_1, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+					.addGap(4)
+					.addComponent(dv_1, 0, 189, Short.MAX_VALUE)
+					.addGap(69))
+				.addGroup(gl_roundPanel_1_1.createSequentialGroup()
+					.addGap(35)
+					.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+					.addGap(4)
+					.addComponent(spinner, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+					.addGap(172))
+				.addGroup(gl_roundPanel_1_1.createSequentialGroup()
+					.addGap(35)
+					.addComponent(lblNewLabel_1_2_1_1, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+					.addGap(4)
+					.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+					.addGap(69))
+				.addGroup(gl_roundPanel_1_1.createSequentialGroup()
+					.addGap(217)
+					.addComponent(rndbtnXa, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+					.addGap(17)
+					.addComponent(rndbtnThm, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE))
+		);
+		gl_roundPanel_1_1.setVerticalGroup(
+			gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_roundPanel_1_1.createSequentialGroup()
+					.addGap(11)
+					.addComponent(lblThmThngTin, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+					.addGap(6)
+					.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_1_2))
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(8)
+					.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_1_2_1))
+						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(8)
+					.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
+							.addGap(4)
+							.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblNewLabel_1_1_2)
+								.addGroup(gl_roundPanel_1_1.createSequentialGroup()
+									.addGap(3)
+									.addComponent(lblNewLabel_1_1_1_1))))
+						.addComponent(dv, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(7)
+					.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
+							.addGap(4)
+							.addComponent(lblNewLabel_1_1_2_1))
+						.addComponent(dv_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_2))
+						.addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_1_2_1_1))
+						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(rndbtnXa, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+						.addComponent(rndbtnThm, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)))
+		);
+		roundPanel_1_1.setLayout(gl_roundPanel_1_1);
 		roundPanel.setLayout(gl_roundPanel);
 	}
 }

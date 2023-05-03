@@ -16,7 +16,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import com.toedter.calendar.JDateChooser;
+
+import control.ketoa.dstoacontrol;
+
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class dstoaform extends JPanel {
 	private JTextField textField;
@@ -36,6 +41,11 @@ public class dstoaform extends JPanel {
 		btnpanel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		RoundButton rndbtnThm = new RoundButton();
+		rndbtnThm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dstoacontrol.add();
+			}
+		});
 		rndbtnThm.setText("Thêm");
 		rndbtnThm.setFocusPainted(false);
 		btnpanel.add(rndbtnThm);
@@ -74,11 +84,7 @@ public class dstoaform extends JPanel {
 		dateChooser.setDateFormatString("dd/MM/yyyy");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
-					.addGap(186)
-					.addComponent(roundPanel, GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE)
-					.addGap(187))
+			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panel.createSequentialGroup()
@@ -88,13 +94,17 @@ public class dstoaform extends JPanel {
 							.addGap(20)
 							.addComponent(roundPanel_1, GroupLayout.DEFAULT_SIZE, 1173, Short.MAX_VALUE)))
 					.addGap(20))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(186)
+					.addComponent(roundPanel, GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE)
+					.addGap(187))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(16)
+					.addContainerGap()
 					.addComponent(roundPanel, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(11)
 					.addComponent(roundPanel_1, GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
 					.addGap(11)
 					.addComponent(btnpanel, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
@@ -150,6 +160,5 @@ public class dstoaform extends JPanel {
 		);
 		roundPanel.setLayout(gl_roundPanel);
 		panel.setLayout(gl_panel);
-
 	}
 }

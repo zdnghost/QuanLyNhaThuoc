@@ -53,34 +53,28 @@ public class dsnhaphanhform extends JPanel {
 		roundPanel.setRoundBottomLeft(20);
 		
 		JLabel lblNewLabel = new JLabel("Mã phiếu");
-		lblNewLabel.setBounds(10, 27, 64, 23);
 		
 		maphieu = new JTextField();
-		maphieu.setBounds(84, 28, 159, 22);
 		maphieu.setDebugGraphicsOptions(DebugGraphics.NONE_OPTION);
 		maphieu.setColumns(10);
 		
 		JLabel lblHng = new JLabel("Nhà cung cấp");
-		lblHng.setBounds(257, 27, 88, 23);
 		
 		JComboBox Hang = new JComboBox();
-		Hang.setBounds(349, 27, 136, 22);
 		
 		RoundButton rndbtnLmMi = new RoundButton();
-		rndbtnLmMi.setBounds(771, 43, 106, 23);
 		rndbtnLmMi.setText("Làm mới");
 		
 		RoundButton rndbtnLmMi_1 = new RoundButton();
-		rndbtnLmMi_1.setBounds(771, 11, 106, 23);
 		rndbtnLmMi_1.setText("Tìm kiếm");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(157)
-					.addComponent(roundPanel, GroupLayout.PREFERRED_SIZE, 899, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(157, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+					.addComponent(roundPanel, GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE)
+					.addGap(157))
+				.addGroup(gl_panel.createSequentialGroup()
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addContainerGap()
@@ -107,22 +101,60 @@ public class dsnhaphanhform extends JPanel {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		roundPanel.setLayout(null);
-		roundPanel.add(lblNewLabel);
-		roundPanel.add(maphieu);
-		roundPanel.add(lblHng);
-		roundPanel.add(Hang);
-		roundPanel.add(rndbtnLmMi);
-		roundPanel.add(rndbtnLmMi_1);
 		
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setDateFormatString("dd/M/yyyy");
-		dateChooser.setBounds(579, 27, 182, 20);
-		roundPanel.add(dateChooser);
 		
 		JLabel lblNewLabel_1 = new JLabel("Ngày nhập");
-		lblNewLabel_1.setBounds(510, 31, 59, 14);
-		roundPanel.add(lblNewLabel_1);
+		GroupLayout gl_roundPanel = new GroupLayout(roundPanel);
+		gl_roundPanel.setHorizontalGroup(
+			gl_roundPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(maphieu, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+					.addGap(14)
+					.addComponent(lblHng, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+					.addGap(4)
+					.addComponent(Hang, 0, 136, Short.MAX_VALUE)
+					.addGap(25)
+					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(dateChooser, GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+					.addGap(10)
+					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(rndbtnLmMi_1, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+						.addComponent(rndbtnLmMi, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
+					.addGap(22))
+		);
+		gl_roundPanel.setVerticalGroup(
+			gl_roundPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGap(27)
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGap(28)
+					.addComponent(maphieu, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGap(27)
+					.addComponent(lblHng, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGap(27)
+					.addComponent(Hang, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGap(31)
+					.addComponent(lblNewLabel_1))
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGap(27)
+					.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGap(11)
+					.addComponent(rndbtnLmMi_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(9)
+					.addComponent(rndbtnLmMi, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+		);
+		roundPanel.setLayout(gl_roundPanel);
 		panel.setLayout(gl_panel);
 
 	}

@@ -3,6 +3,10 @@ package form.thuoc;
 import javax.swing.JPanel;
 
 import com.formdev.flatlaf.FlatLightLaf;
+
+import control.thuoc.themthuoccontrol;
+import control.thuoc.thongtincontrol;
+
 import java.awt.BorderLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -18,6 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
+import java.util.prefs.BackingStoreException;
 import java.awt.event.ActionEvent;
 
 public class thongtinform extends JPanel {
@@ -183,6 +188,11 @@ public class thongtinform extends JPanel {
 		roundPanel.setLayout(gl_roundPanel);
 		
 		RoundButton rndbtnBack = new RoundButton();
+		rndbtnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				thongtincontrol.back();
+			}
+		});
 		rndbtnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		rndbtnBack.setText("Back");
 		
