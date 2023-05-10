@@ -20,12 +20,21 @@ import com.toedter.calendar.JDateChooser;
 import control.ketoa.dstoacontrol;
 
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class dstoaform extends JPanel {
-	private JTextField textField;
-
+	public static TableRowSorter sorter;
+	public static JTextField ma;
+	public static JTable table;
+	public static DefaultTableModel model;
+	public static JDateChooser date;
+	public static JComboBox user;
 	/**
 	 * Create the panel.
 	 */
@@ -62,26 +71,37 @@ public class dstoaform extends JPanel {
 		JLabel lblNewLabel = new JLabel("Mã toa");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		textField = new JTextField();
-		textField.setDebugGraphicsOptions(DebugGraphics.NONE_OPTION);
-		textField.setColumns(10);
+		ma = new JTextField();
+		ma.setDebugGraphicsOptions(DebugGraphics.NONE_OPTION);
+		ma.setColumns(10);
 		
 		JLabel lblHng = new JLabel("Người kê");
 		lblHng.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		JComboBox Hang = new JComboBox();
+		user = new JComboBox();
 		
 		RoundButton rndbtnLmMi = new RoundButton();
+		rndbtnLmMi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dstoacontrol.clear();
+			}
+		});
 		rndbtnLmMi.setText("Làm mới");
 		
 		RoundButton rndbtnLmMi_1 = new RoundButton();
+		rndbtnLmMi_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dstoacontrol.filter(ma.getText().trim(),user.getSelectedItem().toString(),date.getDate());
+				
+			}
+		});
 		rndbtnLmMi_1.setText("Tìm kiếm");
 		
 		JLabel lblNewLabel_1 = new JLabel("Ngày kê");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setDateFormatString("dd/MM/yyyy");
+		date = new JDateChooser();
+		date.setDateFormatString("dd/MM/yyyy");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -110,6 +130,12 @@ public class dstoaform extends JPanel {
 					.addComponent(btnpanel, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 					.addGap(24))
 		);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		roundPanel_1.add(scrollPane, BorderLayout.CENTER);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
 		GroupLayout gl_roundPanel = new GroupLayout(roundPanel);
 		gl_roundPanel.setHorizontalGroup(
 			gl_roundPanel.createParallelGroup(Alignment.LEADING)
@@ -117,15 +143,15 @@ public class dstoaform extends JPanel {
 					.addGap(10)
 					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
 					.addGap(10)
-					.addComponent(textField, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+					.addComponent(ma, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
 					.addGap(14)
 					.addComponent(lblHng, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
 					.addGap(8)
-					.addComponent(Hang, 0, 137, Short.MAX_VALUE)
+					.addComponent(user, 0, 137, Short.MAX_VALUE)
 					.addGap(18)
 					.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
 					.addGap(4)
-					.addComponent(dateChooser, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+					.addComponent(date, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
 					.addGap(46)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(rndbtnLmMi_1, GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
@@ -139,19 +165,19 @@ public class dstoaform extends JPanel {
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(27)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+					.addComponent(ma, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(26)
 					.addComponent(lblHng, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(27)
-					.addComponent(Hang, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addComponent(user, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(31)
 					.addComponent(lblNewLabel_1))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(28)
-					.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addComponent(date, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(11)
 					.addComponent(rndbtnLmMi_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -160,5 +186,7 @@ public class dstoaform extends JPanel {
 		);
 		roundPanel.setLayout(gl_roundPanel);
 		panel.setLayout(gl_panel);
+		dstoacontrol.newtable();
+		dstoacontrol.newcombo();
 	}
 }

@@ -8,12 +8,21 @@ import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
-import form.baocao.baocao;
+import control.menu.menucontrol;
+import form.baocao.thongkeform;
+import form.home.homeform;
 import form.ketoa.tabketoa;
 import form.nhacungcap.tabnhacungcap;
 import form.nhanvien.tabnhanvien;
 import form.nhaphang.tabnhaphang;
 import form.thuoc.tabkhothuoc;
+import model.nhacungcap.listnhacungcap;
+import model.phieunhap.listphieu;
+import model.thuoc.kho;
+import model.thuoc.listdonvi;
+import model.thuoc.listphanloai;
+import model.toathuoc.listtoa;
+import model.user.listnhanvien;
 import form.menu.menuslide;
 import java.awt.Color;
 import swing.button.RoundButton;
@@ -25,6 +34,15 @@ import javax.swing.JTabbedPane;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 public class testmenu extends JFrame {
+	 //model
+	 public static kho kho=new kho();
+	 public static listdonvi listdv=new listdonvi();
+	 public static listphanloai listpl=new listphanloai();
+	 public static listnhanvien listnv=new listnhanvien();
+	 public static listnhacungcap listcc = new listnhacungcap();
+	 public static listphieu listp=new listphieu(); 
+	 public static listtoa listt=new listtoa();
+	 
 	 private JPanel contentPane= new JPanel();
 	 private menuslide menuslide = new menuslide(this);
 	 private JPanel panel = new JPanel();
@@ -35,7 +53,8 @@ public class testmenu extends JFrame {
 	 public tabketoa ketoa= new tabketoa();  
 	 public tabnhanvien nhanvien= new tabnhanvien();
 	 public tabkhothuoc thuoc= new tabkhothuoc();
-	 public baocao home=new baocao();
+	 public homeform home=new homeform();
+	 public thongkeform thongke=new thongkeform();
 	
 	/**
 	 * Launch the application.
@@ -58,7 +77,6 @@ public class testmenu extends JFrame {
 	 * Create the frame.
 	 */
 	public testmenu() {
-		
 		FlatLightLaf.setup();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 800);
@@ -89,11 +107,12 @@ public class testmenu extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(new GridLayout(2, 0, 0, 0));
 		
-		JLabel lblUserInformation = new JLabel("User name:");
+		JLabel lblUserInformation = new JLabel("Người dùng :");
 		lblUserInformation.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUserInformation.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		panel_1.add(lblUserInformation);		
-		JLabel lblUser = new JLabel("Admin");
+		panel_1.add(lblUserInformation);	
+		//Nguyen Hoang Tuan
+		JLabel lblUser = new JLabel("Luong Gia Tuan");
 		lblUser.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUser.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_1.add(lblUser);
@@ -108,6 +127,8 @@ public class testmenu extends JFrame {
 		tabbedPane.addTab("",nhacungcap);
 		tabbedPane.addTab("",ketoa);
 		tabbedPane.addTab("",nhanvien);
+		tabbedPane.addTab("",thongke);
+		menucontrol.Home();
 	}
 	
 }

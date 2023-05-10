@@ -9,6 +9,7 @@ import javax.swing.JTabbedPane;
 public class tabnhanvien extends JPanel {
 	public static JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 	public dsnhanvienform ds=new dsnhanvienform();
+	public themnhanvienform add=new themnhanvienform();
 	/**
 	 * Create the panel.
 	 */
@@ -25,5 +26,6 @@ public class tabnhanvien extends JPanel {
 		});
 		
 		tabbedPane.addTab(null, ds);
+		tabbedPane.addTab(null, add);
 	}
 }

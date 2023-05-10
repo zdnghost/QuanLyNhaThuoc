@@ -17,6 +17,7 @@ public class menucontrol {
 		menuslide.btnCungcap.setColor(new Color(0, 144, 219));
 		menuslide.btnHome.setColor(new Color(0, 144, 219));
 		menuslide.btnUser.setColor(new Color(0, 144, 219));
+		menuslide.btnThongke.setColor(new Color(0, 144, 219));
 		//
 		menuslide.btnThuoc.setColorOver(new Color(255, 255, 255,90));
 		menuslide.btnNhaphang.setColorOver(new Color(255, 255, 255,30));
@@ -24,6 +25,7 @@ public class menucontrol {
 		menuslide.btnCungcap.setColorOver(new Color(255, 255, 255,30));
 		menuslide.btnHome.setColorOver(new Color(255, 255, 255,30));
 		menuslide.btnUser.setColorOver(new Color(255, 255, 255,30));
+		menuslide.btnThongke.setColorOver(new Color(255, 255, 255,30));
 		testmenu.tabbedPane.setSelectedIndex(1);
 	}
 	public static void Nhacungcap() {
@@ -33,6 +35,7 @@ public class menucontrol {
 		menuslide.btnNhaphang.setColor(new Color(0, 144, 219));
 		menuslide.btnHome.setColor(new Color(0, 144, 219));
 		menuslide.btnUser.setColor(new Color(0, 144, 219));
+		menuslide.btnThongke.setColor(new Color(0, 144, 219));
 		//
 		menuslide.btnCungcap.setColorOver(new Color(255, 255, 255,90));
 		menuslide.btnThuoc.setColorOver(new Color(255, 255, 255,30));
@@ -40,6 +43,7 @@ public class menucontrol {
 		menuslide.btnNhaphang.setColorOver(new Color(255, 255, 255,30));
 		menuslide.btnHome.setColorOver(new Color(255, 255, 255,30));
 		menuslide.btnUser.setColorOver(new Color(255, 255, 255,30));
+		menuslide.btnThongke.setColorOver(new Color(255, 255, 255,30));
 		testmenu.tabbedPane.setSelectedIndex(3);
 	}
 	public static void Toa() {
@@ -49,6 +53,7 @@ public class menucontrol {
 		menuslide.btnCungcap.setColor(new Color(0, 144, 219));
 		menuslide.btnHome.setColor(new Color(0, 144, 219));
 		menuslide.btnUser.setColor(new Color(0, 144, 219));
+		menuslide.btnThongke.setColor(new Color(0, 144, 219));
 		//
 		menuslide.btnKetoa.setColorOver(new Color(255, 255, 255,90));
 		menuslide.btnThuoc.setColorOver(new Color(255, 255, 255,30));
@@ -56,6 +61,7 @@ public class menucontrol {
 		menuslide.btnCungcap.setColorOver(new Color(255, 255, 255,30));
 		menuslide.btnHome.setColorOver(new Color(255, 255, 255,30));
 		menuslide.btnUser.setColorOver(new Color(255, 255, 255,30));
+		menuslide.btnThongke.setColorOver(new Color(255, 255, 255,30));
 		testmenu.tabbedPane.setSelectedIndex(4);
 	}
 	public static void Nhap() {
@@ -72,6 +78,7 @@ public class menucontrol {
 		menuslide.btnCungcap.setColorOver(new Color(255, 255, 255,30));
 		menuslide.btnHome.setColorOver(new Color(255, 255, 255,30));
 		menuslide.btnUser.setColorOver(new Color(255, 255, 255,30));
+		menuslide.btnThongke.setColorOver(new Color(255, 255, 255,30));
 		testmenu.tabbedPane.setSelectedIndex(2);
 	}
 	public static void Home() {
@@ -81,6 +88,7 @@ public class menucontrol {
 		menuslide.btnCungcap.setColor(new Color(0, 144, 219));
 		menuslide.btnNhaphang.setColor(new Color(0, 144, 219));
 		menuslide.btnUser.setColor(new Color(0, 144, 219));
+		menuslide.btnThongke.setColor(new Color(0, 144, 219));
 		//
 		menuslide.btnHome.setColorOver(new Color(255, 255, 255,90));
 		menuslide.btnThuoc.setColorOver(new Color(255, 255, 255,30));
@@ -88,6 +96,7 @@ public class menucontrol {
 		menuslide.btnCungcap.setColorOver(new Color(255, 255, 255,30));
 		menuslide.btnNhaphang.setColorOver(new Color(255, 255, 255,30));
 		menuslide.btnUser.setColorOver(new Color(255, 255, 255,30));
+		menuslide.btnThongke.setColorOver(new Color(255, 255, 255,30));
 		testmenu.tabbedPane.setSelectedIndex(0);
 	}
 	public static void User() {
@@ -97,6 +106,7 @@ public class menucontrol {
 		menuslide.btnCungcap.setColor(new Color(0, 144, 219));
 		menuslide.btnHome.setColor(new Color(0, 144, 219));
 		menuslide.btnNhaphang.setColor(new Color(0, 144, 219));
+		menuslide.btnThongke.setColor(new Color(0, 144, 219));
 		//
 		menuslide.btnUser.setColorOver(new Color(255, 255, 255,90));
 		menuslide.btnThuoc.setColorOver(new Color(255, 255, 255,30));
@@ -104,6 +114,25 @@ public class menucontrol {
 		menuslide.btnCungcap.setColorOver(new Color(255, 255, 255,30));
 		menuslide.btnHome.setColorOver(new Color(255, 255, 255,30));
 		menuslide.btnNhaphang.setColorOver(new Color(255, 255, 255,30));
+		menuslide.btnThongke.setColorOver(new Color(255, 255, 255,30));
 		testmenu.tabbedPane.setSelectedIndex(5);
+	}
+	public static void Thongke() {
+		menuslide.btnThongke.setColor(new Color(255, 255, 255,90));
+		menuslide.btnThuoc.setColor(new Color(0, 144, 219));
+		menuslide.btnKetoa.setColor(new Color(0, 144, 219));
+		menuslide.btnCungcap.setColor(new Color(0, 144, 219));
+		menuslide.btnHome.setColor(new Color(0, 144, 219));
+		menuslide.btnNhaphang.setColor(new Color(0, 144, 219));
+		menuslide.btnUser.setColor(new Color(0, 144, 219));
+		//
+		menuslide.btnThongke.setColorOver(new Color(255, 255, 255,90));
+		menuslide.btnThuoc.setColorOver(new Color(255, 255, 255,30));
+		menuslide.btnKetoa.setColorOver(new Color(255, 255, 255,30));
+		menuslide.btnCungcap.setColorOver(new Color(255, 255, 255,30));
+		menuslide.btnHome.setColorOver(new Color(255, 255, 255,30));
+		menuslide.btnNhaphang.setColorOver(new Color(255, 255, 255,30));
+		menuslide.btnUser.setColorOver(new Color(255, 255, 255,30));
+		testmenu.tabbedPane.setSelectedIndex(6);
 	}
 }

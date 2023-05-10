@@ -15,9 +15,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 import com.formdev.flatlaf.FlatLightLaf;
-
 import control.thuoc.khothuoccontrol;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -33,6 +33,7 @@ public class khothuocform extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public static TableRowSorter sorter;
 	public static JTextField mathuoc=new JTextField();
 	public static JTextField tenthuoc=new JTextField();
 	public static JTextField hoatchat=new JTextField();
@@ -124,9 +125,19 @@ public class khothuocform extends JPanel {
 		hoatchat.setColumns(10);
 		
 		RoundButton rndbtnLmMi = new RoundButton();
+		rndbtnLmMi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				khothuoccontrol.reset();
+			}
+		});
 		rndbtnLmMi.setText("Làm mới");
 		
 		RoundButton rndbtnLmMi_1 = new RoundButton();
+		rndbtnLmMi_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				khothuoccontrol.filter(mathuoc.getText().trim(),tenthuoc.getText().trim(),Hang.getSelectedItem().toString(),Phanloai.getSelectedItem().toString(),Donvi.getSelectedItem().toString(),hoatchat.getText().trim());
+			}
+		});
 		rndbtnLmMi_1.setText("Tìm kiếm");
 		GroupLayout gl_roundPanel = new GroupLayout(roundPanel);
 		gl_roundPanel.setHorizontalGroup(

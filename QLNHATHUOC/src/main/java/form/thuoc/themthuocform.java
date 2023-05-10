@@ -8,6 +8,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.SystemColor;
+
 import javax.swing.SwingConstants;
 import swing.panel.RoundPanel;
 import java.awt.Color;
@@ -24,17 +26,17 @@ import java.util.prefs.BackingStoreException;
 import java.awt.event.ActionEvent;
 import control.thuoc.themthuoccontrol;
 public class themthuocform extends JPanel {
-	private JTextField masp;
-	private JTextField tensp;
-	private JTextField textField_2;
-	private JTextField hoatchat;
+	public JTextField masp;
+	public JTextField tensp;
+	public JTextField hamluong;
+	public JTextField hoatchat;
 	public static DefaultComboBoxModel cbphanloai;
 	public static DefaultComboBoxModel cbdonvi;
 	public static DefaultComboBoxModel cbhang;
 	public static JComboBox Donvi;
 	public static JComboBox Phanloai;
 	public static JComboBox Hang ;
-	private JTextField textField;
+	public JTextField quydoi;
 
 	/**
 	 * Create the panel.
@@ -45,7 +47,7 @@ public class themthuocform extends JPanel {
 		setSize(1213,707);
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.CENTER);
-		
+		panel.setBackground(SystemColor.activeCaption);
 		JLabel lblNewLabel = new JLabel("Sản phẩm mới");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -63,8 +65,8 @@ public class themthuocform extends JPanel {
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Tên sản phẩm");
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		hamluong = new JTextField();
+		hamluong.setColumns(10);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Hàm lượng");
 		
@@ -128,14 +130,14 @@ public class themthuocform extends JPanel {
 		rndbtnThm.setText("Thêm");
 		rndbtnThm.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		quydoi = new JTextField();
+		quydoi.setColumns(10);
 		
 		JLabel lblNewLabel_1_2_2 = new JLabel("Quy đổi");
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("Thêm");
 		
-		JButton btnNewButton_1 = new JButton("New button");
+		JButton btnNewButton_1 = new JButton("Thêm");
 		
 		JLabel lblNewLabel_1_2_2_1 = new JLabel("(Nếu đây là đơn vị cơ bản hãy nhập số 1)");
 		GroupLayout gl_roundPanel = new GroupLayout(roundPanel);
@@ -188,11 +190,11 @@ public class themthuocform extends JPanel {
 						.addGroup(gl_roundPanel.createSequentialGroup()
 							.addComponent(lblNewLabel_1_2, GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
 							.addGap(10)
-							.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE))
+							.addComponent(hamluong, GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE))
 						.addGroup(gl_roundPanel.createSequentialGroup()
 							.addComponent(lblNewLabel_1_2_2, GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
 							.addGap(10)
-							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+							.addComponent(quydoi, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(lblNewLabel_1_2_2_1, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)))
 					.addGap(60))
@@ -233,11 +235,11 @@ public class themthuocform extends JPanel {
 					.addGap(11)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+						.addComponent(hamluong, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNewLabel_1_2_2, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+						.addComponent(quydoi, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_1_2_2_1, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(rndbtnThm, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)

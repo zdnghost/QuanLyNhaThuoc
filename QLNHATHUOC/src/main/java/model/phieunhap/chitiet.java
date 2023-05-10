@@ -5,13 +5,20 @@ import java.util.Date;
 import model.thuoc.lothuoc;
 
 public class chitiet {
-	public chitiet(String mathuoc, String hangthuoc, int iddonvi, int sl, Date ngayhethan) {
+	public chitiet(String mathuoc, String hangthuoc, int iddonvi, int sl, Date ngayhethan,int dongia) {
 		super();
 		this.mathuoc = mathuoc;
 		this.hangthuoc = hangthuoc;
 		this.iddonvi = iddonvi;
 		this.sl = sl;
 		this.ngayhethan = ngayhethan;
+		this.dongia=dongia;
+	}
+	public int getDongia() {
+		return dongia;
+	}
+	public void setDongia(int dongia) {
+		this.dongia = dongia;
 	}
 	public String getMathuoc() {
 		return mathuoc;
@@ -42,6 +49,7 @@ public class chitiet {
 	private int iddonvi;
 	private int sl ;
 	private Date ngayhethan;
+	private int dongia;
 	public Date getNgayhethan() {
 		return ngayhethan;
 	}

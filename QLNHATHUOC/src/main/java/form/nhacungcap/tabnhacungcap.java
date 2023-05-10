@@ -9,6 +9,7 @@ import javax.swing.JTabbedPane;
 public class tabnhacungcap extends JPanel {
 	public static JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 	public dsnhacungcapform ds=new dsnhacungcapform();
+	public themnhacungcapform add=new themnhacungcapform();
 	/**
 	 * Create the panel.
 	 */
@@ -18,6 +19,7 @@ public class tabnhacungcap extends JPanel {
 		tabbedPane.setBounds(0, -25, 1213,732);
 		add(tabbedPane);
 		tabbedPane.addTab(null, ds);
+		tabbedPane.addTab(null, add);
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {

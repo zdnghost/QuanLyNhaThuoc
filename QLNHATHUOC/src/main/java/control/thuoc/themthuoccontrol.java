@@ -6,7 +6,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 import databese.db;
+import form.main.testmenu;
 import form.thuoc.*;
+import model.nhacungcap.nhacungcap;
+import model.thuoc.id;
 public class themthuoccontrol {
 
 	public static void back() {
@@ -16,42 +19,26 @@ public class themthuoccontrol {
 		
 	}
 	public static void newlist() {
-		themthuocform.cbphanloai = new DefaultComboBoxModel(new String[] { "Tất cả" });
-		ResultSet res = db.getquery("SELECT* FROM PHANLOAI");
-		try {
-			while (res.next()) {
-				themthuocform.cbphanloai.addElement(res.getString(2).trim());
-			}
-			db.disconect();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		themthuocform.cbphanloai = new DefaultComboBoxModel();
+		testmenu.listpl.load();
+		testmenu.listdv.load();
+		testmenu.listcc.load();
+		
+		for(id a:testmenu.listpl.list)
+		{
+			themthuocform.cbphanloai.addElement(a.getTen());}
 		themthuocform.Phanloai.setModel(themthuocform.cbphanloai);
 
-		themthuocform.cbdonvi = new DefaultComboBoxModel(new String[] { "Tất cả" });
-		res = db.getquery("SELECT* FROM DONVITHUOC");
-		try {
-			while (res.next()) {
-				themthuocform.cbdonvi.addElement(res.getString(2).trim());
+		themthuocform.cbdonvi = new DefaultComboBoxModel();
+		for(id a:testmenu.listdv.list)
+		{			themthuocform.cbdonvi.addElement(a.getTen());
 			}
-			db.disconect();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		themthuocform.Donvi.setModel(themthuocform.cbdonvi);
-		themthuocform.cbhang = new DefaultComboBoxModel(new String[] { "Tất cả" });
-		res = db.getquery("SELECT* FROM NHACUNGCAP");
-		try {
-			while (res.next()) {
-				themthuocform.cbhang.addElement(res.getString(1).trim());
-			}
-			db.disconect();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		themthuocform.cbhang = new DefaultComboBoxModel();
+		for(nhacungcap a:testmenu.listcc.list)
+		{
+			themthuocform.cbhang.addElement(a.getMa());
 		}
 		themthuocform.Hang.setModel(themthuocform.cbhang);
 	}

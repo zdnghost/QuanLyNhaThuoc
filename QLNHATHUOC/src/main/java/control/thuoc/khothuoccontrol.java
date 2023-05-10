@@ -3,14 +3,24 @@ package control.thuoc;
 import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 import databese.db;
+import form.main.testmenu;
 import form.thuoc.*;
+import model.nhacungcap.nhacungcap;
+import model.thuoc.id;
+import model.thuoc.listdonvi;
+import model.thuoc.thuoc;
 
 public class khothuoccontrol {
 
@@ -18,24 +28,16 @@ public class khothuoccontrol {
 
 		khothuocform.table.getTableHeader().setReorderingAllowed(false);
 		khothuocform.model = new DefaultTableModel(new Object[][] {},
-				new String[] { "Mã thuốc", "Tên thuốc", "Hãng", "Đóng gói", "Đơn vị", "Hoạt chất", "Hàm lượng" }) {
+				new String[] { "Mã thuốc", "Tên thuốc", "Hãng", "Phân loại", "Đơn vị", "Hoạt chất", "Hàm lượng" }) {
 			boolean[] columnEditables = new boolean[] { false, false, false, false, false, false, false };
 
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
 		};
-		ResultSet res = db.getquery("SELECT* FROM dbo.fn_getDATADANHMUCTHUOC()");
-		try {
-			while (res.next()) {
-				khothuocform.model.addRow(new Object[] { res.getString(1).trim(), res.getString(2).trim(),
-						res.getString(3).trim(), res.getString(4).trim(), res.getString(5).trim(),
-						res.getString(6).trim(), res.getString(7).trim() });
-			}
-			db.disconect();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		testmenu.kho.load();
+		for(thuoc a:testmenu.kho.listthuoc) {
+		khothuocform.model.addRow(new Object[] {a.getMathuoc(),a.getTenthuoc(),a.getHangthuoc(),a.getPhanloai().getTen(),a.getDonvi().getTen(),a.getHoatchat(),a.getHamluong()});
 		}
 		khothuocform.table.setModel(khothuocform.model);
 		khothuocform.table.getColumnModel().getColumn(0).setResizable(false);
@@ -45,52 +47,42 @@ public class khothuoccontrol {
 		khothuocform.table.getColumnModel().getColumn(4).setResizable(false);
 		khothuocform.table.getColumnModel().getColumn(5).setResizable(false);
 		khothuocform.table.getColumnModel().getColumn(6).setResizable(false);
+		khothuocform.sorter=new TableRowSorter(khothuocform.table.getModel());
+		khothuocform.table.setRowSorter(khothuocform.sorter);
 	}
+
 
 	public static void newlist() {
 		khothuocform.cbphanloai = new DefaultComboBoxModel(new String[] { "Tất cả" });
-		ResultSet res = db.getquery("SELECT* FROM PHANLOAI");
-		try {
-			while (res.next()) {
-				khothuocform.cbphanloai.addElement(res.getString(2).trim());
-			}
-			db.disconect();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		testmenu.listpl.load();
+		testmenu.listdv.load();
+		testmenu.listcc.load();
+		for(id a:testmenu.listpl.list)
+		{
+			khothuocform.cbphanloai.addElement(a.getTen());
 		}
 		khothuocform.Phanloai.setModel(khothuocform.cbphanloai);
-
+//
 		khothuocform.cbdonvi = new DefaultComboBoxModel(new String[] { "Tất cả" });
-		res = db.getquery("SELECT* FROM DONVITHUOC");
-		try {
-			while (res.next()) {
-				khothuocform.cbdonvi.addElement(res.getString(2).trim());
-			}
-			db.disconect();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		for(id a:testmenu.listdv.list)
+		{
+			khothuocform.cbdonvi.addElement(a.getTen());
 		}
-
 		khothuocform.Donvi.setModel(khothuocform.cbdonvi);
+//
 		khothuocform.cbhang = new DefaultComboBoxModel(new String[] { "Tất cả" });
-		res = db.getquery("SELECT* FROM NHACUNGCAP");
-		try {
-			while (res.next()) {
-				khothuocform.cbhang.addElement(res.getString(1).trim());
-			}
-			db.disconect();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		for(nhacungcap a:testmenu.listcc.list)
+		{
+			khothuocform.cbhang.addElement(a.getMa());
 		}
 		khothuocform.Hang.setModel(khothuocform.cbhang);
 
 	}
 	
 	public static void info() {
-		tabkhothuoc.tabbedPane.setSelectedIndex(2);;
+		tabkhothuoc.tabbedPane.setSelectedIndex(2);
+		int i=khothuocform.table.getSelectedRow();
+		thongtincontrol.getthongtin(khothuocform.table.getValueAt(i, 0).toString(),khothuocform.table.getValueAt(i, 2).toString(), khothuocform.table.getValueAt(i, 4).toString());
 	}
 	public static void addpanel() {
 		tabkhothuoc.tabbedPane.setSelectedIndex(1);
@@ -126,7 +118,31 @@ public class khothuoccontrol {
             JOptionPane.showMessageDialog(null,"khong the luu file");
         }
 	}
-	public static void sort() {
-		
+	public static void filter(String ma,String ten,String hang,String pl,String dv,String hc) {
+		RowFilter rf=null;
+		if(dv.contains("Tất cả"))
+			dv="";
+		if(pl.contains("Tất cả"))
+			pl="";
+		if(hang.contains("Tất cả"))
+			hang="";
+		List<RowFilter<Object,Object>> filters = new ArrayList<RowFilter<Object,Object>>(2);
+		filters.add(RowFilter.regexFilter(ma, 0));
+		filters.add(RowFilter.regexFilter(ten, 1));
+		filters.add(RowFilter.regexFilter(hang, 2));
+		filters.add(RowFilter.regexFilter(pl, 3));
+		filters.add(RowFilter.regexFilter(dv, 4));
+		filters.add(RowFilter.regexFilter(hc, 5));
+		rf = RowFilter.andFilter(filters);
+		khothuocform.sorter.setRowFilter(rf);
+	}
+	public static void reset() {
+		khothuocform.mathuoc.setText("");
+		khothuocform.tenthuoc.setText("");
+		khothuocform.hoatchat.setText("");
+		khothuocform.Hang.setSelectedIndex(0);
+		khothuocform.Donvi.setSelectedIndex(0);
+		khothuocform.Phanloai.setSelectedIndex(0);
+		filter(khothuocform.mathuoc.getText().trim(),khothuocform.tenthuoc.getText().trim(),khothuocform.Hang.getSelectedItem().toString(),khothuocform.Phanloai.getSelectedItem().toString(),khothuocform.Donvi.getSelectedItem().toString(),khothuocform.hoatchat.getText().trim());
 	}
 }

@@ -14,20 +14,30 @@ import javax.swing.JTextField;
 import javax.swing.DebugGraphics;
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import com.toedter.calendar.JDateChooser;
+
+import control.nhaphang.dsnhaphangcontrol;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class dsnhaphanhform extends JPanel {
-	private JTextField maphieu;
-	private JTable table;
-
+public class dsnhaphangform extends JPanel {
+	public static TableRowSorter sorter;
+	public static JTextField maphieu;
+	public static JComboBox Hang ;
+	public static JDateChooser ngaynhap;
+	public static JTable table;
+	public static DefaultTableModel model;
 	/**
 	 * Create the panel.
 	 */
-	public dsnhaphanhform() {
+	public dsnhaphangform() {
 		setLayout(new BorderLayout(0, 0));
 		setSize(1213,707);
 		FlatLightLaf.setup();
@@ -39,6 +49,11 @@ public class dsnhaphanhform extends JPanel {
 		btnpanel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		RoundButton rndbtnThm = new RoundButton();
+		rndbtnThm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dsnhaphangcontrol.add();
+			}
+		});
 		rndbtnThm.setText("Thêm");
 		rndbtnThm.setFocusPainted(false);
 		btnpanel.add(rndbtnThm);
@@ -60,12 +75,21 @@ public class dsnhaphanhform extends JPanel {
 		
 		JLabel lblHng = new JLabel("Nhà cung cấp");
 		
-		JComboBox Hang = new JComboBox();
+		Hang = new JComboBox();
 		
 		RoundButton rndbtnLmMi = new RoundButton();
+		rndbtnLmMi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dsnhaphangcontrol.clear();
+			}
+		});
 		rndbtnLmMi.setText("Làm mới");
-		
 		RoundButton rndbtnLmMi_1 = new RoundButton();
+		rndbtnLmMi_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dsnhaphangcontrol.filter(maphieu.getText().trim(),Hang.getSelectedItem().toString(),ngaynhap.getDate());
+			}
+		});
 		rndbtnLmMi_1.setText("Tìm kiếm");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -102,8 +126,8 @@ public class dsnhaphanhform extends JPanel {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setDateFormatString("dd/M/yyyy");
+		ngaynhap = new JDateChooser();
+		ngaynhap.setDateFormatString("dd/M/yyyy");
 		
 		JLabel lblNewLabel_1 = new JLabel("Ngày nhập");
 		GroupLayout gl_roundPanel = new GroupLayout(roundPanel);
@@ -121,7 +145,7 @@ public class dsnhaphanhform extends JPanel {
 					.addGap(25)
 					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
 					.addGap(10)
-					.addComponent(dateChooser, GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+					.addComponent(ngaynhap, GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
 					.addGap(10)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(rndbtnLmMi_1, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
@@ -147,7 +171,7 @@ public class dsnhaphanhform extends JPanel {
 					.addComponent(lblNewLabel_1))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(27)
-					.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addComponent(ngaynhap, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(11)
 					.addComponent(rndbtnLmMi_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -156,6 +180,7 @@ public class dsnhaphanhform extends JPanel {
 		);
 		roundPanel.setLayout(gl_roundPanel);
 		panel.setLayout(gl_panel);
-
+		dsnhaphangcontrol.newtable();
+		dsnhaphangcontrol.newcombo();
 	}
 }

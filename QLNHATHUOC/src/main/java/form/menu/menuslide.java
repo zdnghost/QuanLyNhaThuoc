@@ -64,16 +64,12 @@ public class menuslide extends JPanel {
 	public static RoundButton btnKetoa = new RoundButton();
 	public static RoundButton btnUser = new RoundButton();
 	public static RoundButton btnHome = new RoundButton();
+	public static RoundButton btnThongke = new RoundButton();
 	public menuslide(JFrame fram) {
-
-		
 		btnMenu.setAlignmentY(Component.TOP_ALIGNMENT);
 		btnMenu.setIconTextGap(0);
 		btnMenu.setSize(50, 50);
 		setOpaque(false);
-		
-		
-
 		menu.setBounds(0, 0, 305, 789);
 		menu.setBackground(new Color(51, 255, 255));		
 		btnMenu.addActionListener(new ActionListener() {
@@ -208,7 +204,6 @@ public class menuslide extends JPanel {
 				menucontrol.Home();
 			}
 		});
-		
 		btnHome.setHorizontalAlignment(SwingConstants.LEFT);
 		btnHome.setIcon(getImage("/form/menu/home.png",50,50));
 		btnHome.setText("    Trang chính");
@@ -225,6 +220,28 @@ public class menuslide extends JPanel {
 		btnHome.setBackground(new Color(0, 144, 219));
 		btnHome.setBounds(-15, 50, 320, 50);
 		menu.add(btnHome);
+		btnThongke.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				menucontrol.Thongke();
+			}
+		});
+		
+		
+		btnThongke.setText("    Thống kê");
+		btnThongke.setIcon(getImage("/form/menu/chart.png",50,50));
+		btnThongke.setHorizontalAlignment(SwingConstants.LEFT);
+		btnThongke.setFont(new Font("Dialog", Font.PLAIN, 20));
+		btnThongke.setFocusable(false);
+		btnThongke.setFocusTraversalKeysEnabled(false);
+		btnThongke.setFocusPainted(false);
+		btnThongke.setColorOver(new Color(255, 255, 255, 30));
+		btnThongke.setColorClick(new Color(255, 255, 255, 90));
+		btnThongke.setColor(new Color(0, 144, 219));
+		btnThongke.setBorderPainted(false);
+		btnThongke.setBorderColor(new Color(0, 144, 219));
+		btnThongke.setBackground(new Color(0, 144, 219));
+		btnThongke.setBounds(-15, 350, 320, 50);
+		menu.add(btnThongke);
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -241,6 +258,7 @@ public class menuslide extends JPanel {
 				}
 			}
 		});
+		
 	}
 	public void slide() {
 		

@@ -7,6 +7,9 @@ import javax.swing.JPanel;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.toedter.calendar.JDateChooser;
 
+import control.nhacungcap.dsnhacungcapcontrol;
+import control.nhaphang.dsnhaphangcontrol;
+
 import java.awt.SystemColor;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -18,14 +21,19 @@ import javax.swing.JTextField;
 import javax.swing.DebugGraphics;
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class dsnhacungcapform extends JPanel {
-	private JTextField maphieu;
-	private JTable table;
-	private JTextField textField;
-
+	public static  JTextField ma;
+	public static JTable table;
+	public static DefaultTableModel model;
+	public static JTextField ten;
+	public static TableRowSorter sorter;
 	/**
 	 * Create the panel.
 	 */
@@ -41,6 +49,11 @@ public class dsnhacungcapform extends JPanel {
 		btnpanel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		RoundButton rndbtnThm = new RoundButton();
+		rndbtnThm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dsnhacungcapcontrol.add();
+			}
+		});
 		rndbtnThm.setText("Thêm");
 		rndbtnThm.setFocusPainted(false);
 		btnpanel.add(rndbtnThm);
@@ -56,15 +69,25 @@ public class dsnhacungcapform extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel("Mã nhà cung cấp");
 		
-		maphieu = new JTextField();
-		maphieu.setDebugGraphicsOptions(DebugGraphics.NONE_OPTION);
-		maphieu.setColumns(10);
+		ma = new JTextField();
+		ma.setDebugGraphicsOptions(DebugGraphics.NONE_OPTION);
+		ma.setColumns(10);
 		
 		RoundButton rndbtnLmMi = new RoundButton();
+		rndbtnLmMi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dsnhacungcapcontrol.reset();
+			}
+		});
 		rndbtnLmMi.setText("Làm mới");
 		
-		RoundButton rndbtnLmMi_1 = new RoundButton();
-		rndbtnLmMi_1.setText("Tìm kiếm");
+		RoundButton btnfilter = new RoundButton();
+		btnfilter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dsnhacungcapcontrol.filter(ma.getText().trim(),ten.getText().trim());
+			}
+		});
+		btnfilter.setText("Tìm kiếm");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -102,9 +125,9 @@ public class dsnhacungcapform extends JPanel {
 		
 		JLabel lblNewLabel_1 = new JLabel("Tên nhà cung cấp");
 		
-		textField = new JTextField();
-		textField.setDebugGraphicsOptions(DebugGraphics.NONE_OPTION);
-		textField.setColumns(10);
+		ten = new JTextField();
+		ten.setDebugGraphicsOptions(DebugGraphics.NONE_OPTION);
+		ten.setColumns(10);
 		GroupLayout gl_roundPanel = new GroupLayout(roundPanel);
 		gl_roundPanel.setHorizontalGroup(
 			gl_roundPanel.createParallelGroup(Alignment.LEADING)
@@ -112,14 +135,14 @@ public class dsnhacungcapform extends JPanel {
 					.addGap(10)
 					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
 					.addGap(10)
-					.addComponent(maphieu, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+					.addComponent(ma, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
 					.addGap(10)
 					.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+					.addComponent(ten, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
 					.addGap(44)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(rndbtnLmMi_1, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnfilter, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
 						.addComponent(rndbtnLmMi, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
 					.addGap(22))
 		);
@@ -130,19 +153,20 @@ public class dsnhacungcapform extends JPanel {
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(28)
-					.addComponent(maphieu, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+					.addComponent(ma, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(27)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(ten, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(11)
-					.addComponent(rndbtnLmMi_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnfilter, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(9)
 					.addComponent(rndbtnLmMi, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		roundPanel.setLayout(gl_roundPanel);
 		panel.setLayout(gl_panel);
+		dsnhacungcapcontrol.newtable();
 	}
 }
