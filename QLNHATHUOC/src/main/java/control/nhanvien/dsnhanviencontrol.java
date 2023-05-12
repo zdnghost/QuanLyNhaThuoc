@@ -14,7 +14,7 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-import form.main.testmenu;
+import form.main.Mainframe;
 import form.nhanvien.dsnhanvienform;
 import form.nhanvien.tabnhanvien;
 import model.user.duocsi;
@@ -28,14 +28,14 @@ public class dsnhanviencontrol {
 
 		dsnhanvienform.table.getTableHeader().setReorderingAllowed(false);
 		dsnhanvienform.model = new DefaultTableModel(new Object[][] {},
-				new String[] { "Tên nhân viên", "Phái","Ngày vào làm","Chức vụ" }) {
-			boolean[] columnEditables = new boolean[] { false, false, false,false};
+				new String[] { "Tên nhân viên", "Phái","Ngày vào làm","Chức vụ","Email" }) {
+			boolean[] columnEditables = new boolean[] { false, false, false,false,false};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
 		};
-		testmenu.listnv.load();
-		for(nhanvien a :testmenu.listnv.list)
+		Mainframe.listnv.load();
+		for(nhanvien a :Mainframe.listnv.list)
 		{
 			String p=null;
 			if(a.isPhai())
@@ -52,7 +52,7 @@ public class dsnhanviencontrol {
 			else {
 				cv="Nhân viên";
 			}
-			dsnhanvienform.model.addRow(new Object[] {a.getTen(),p,a.getNgayvao().toString(),cv});	 
+			dsnhanvienform.model.addRow(new Object[] {a.getTen(),p,a.getNgayvao().toString(),cv,a.getEmail()});	 
 		}
 		dsnhanvienform.table.setModel(dsnhanvienform.model);
 		dsnhanvienform.table.getColumnModel().getColumn(0).setResizable(false);

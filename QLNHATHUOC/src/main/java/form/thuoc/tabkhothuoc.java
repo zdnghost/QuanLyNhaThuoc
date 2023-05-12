@@ -10,6 +10,7 @@ public class tabkhothuoc extends JPanel {
 	static khothuocform kho=new khothuocform();
 	static themthuocform them=new themthuocform();
 	static thongtinform info=new thongtinform();
+	static quydoiform qd=new quydoiform();
 	/**
 	 * Create the panel.
 	 */
@@ -21,6 +22,7 @@ public class tabkhothuoc extends JPanel {
 		tabbedPane.addTab(null, kho);
 		tabbedPane.addTab(null, them);
 		tabbedPane.addTab(null, info);
+		tabbedPane.addTab(null, qd);
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {

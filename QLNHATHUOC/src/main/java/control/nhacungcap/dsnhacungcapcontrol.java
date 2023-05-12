@@ -11,7 +11,7 @@ import javax.swing.table.TableRowSorter;
 
 import databese.db;
 import form.ketoa.dstoaform;
-import form.main.testmenu;
+import form.main.Mainframe;
 import form.nhacungcap.dsnhacungcapform;
 import form.nhacungcap.tabnhacungcap;
 import model.nhacungcap.nhacungcap;
@@ -21,6 +21,11 @@ public class dsnhacungcapcontrol {
 	public static void add() {
 		tabnhacungcap.tabbedPane.setSelectedIndex(1);
 	}
+	public static void load(String ma) {
+		tabnhacungcap.tabbedPane.setSelectedIndex(2);
+		thongtinnhacungcapcontrol.load(ma);
+	}
+
 	public static void newtable() {
 
 		dsnhacungcapform.table.getTableHeader().setReorderingAllowed(false);
@@ -31,8 +36,8 @@ public class dsnhacungcapcontrol {
 				return columnEditables[column];
 			}
 		};
-		testmenu.listcc.load();
-		for(nhacungcap a:testmenu.listcc.list)
+		Mainframe.listcc.load();
+		for(nhacungcap a:Mainframe.listcc.list)
 		{
 			dsnhacungcapform.model.addRow(new Object[] {a.getMa(),a.getTen(),a.getDc()});
 		}

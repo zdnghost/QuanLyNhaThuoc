@@ -32,7 +32,7 @@ public class kho {
 					while (rs2.next()) {
 						templist.add(new lothuoc(rs2.getString(1).trim(),rs2.getString(2),rs2.getString(4),rs2.getDate(5), rs2.getInt(3)));
 					}
-					listthuoc.add(new thuoc(rs1.getString(1).trim(),rs1.getString(3),rs1.getString(2), rs1.getString(6),rs1.getString(7),new id(rs1.getInt(10),rs1.getString(4)),new id(rs1.getInt(9),rs1.getString(5)), templist,rs1.getInt(11)));	
+					listthuoc.add(new thuoc(rs1.getString(1).trim(),rs1.getString(3),rs1.getString(2), rs1.getString(6),rs1.getString(7),new id(rs1.getInt(10),rs1.getString(4)),new id(rs1.getInt(9),rs1.getString(5)), templist,rs1.getInt(11),rs1.getInt(8)));	
 				}	
 				db.disconect();
 			} catch (SQLException e) {

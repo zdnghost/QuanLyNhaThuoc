@@ -26,20 +26,25 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
-public class addphieuform extends JPanel {
-	private JTextField maphieu;
-	private JTextField nhacungcap;
-	private JTextField mathuoc;
-	private JTable table;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+public class nhaphangform extends JPanel {
+	public static JTextField maphieu;
+	public static JTextField nhacungcap;
+	public static JTextField mathuoc;
+	public static JTable table;
+	public static JTextField hang;
+	public static JTextField dongia;
+	public static JTextField tongtien;
+	public static JComboBox dv;
+	public static JSpinner sl;
+	public static JDateChooser date;
 
 	/**
 	 * Create the panel.
 	 */
-	public addphieuform() {
+	public nhaphangform() {
 		setLayout(new BorderLayout(0, 0));
 		setSize(1213,707);
 		RoundPanel roundPanel = new RoundPanel();
@@ -66,27 +71,36 @@ public class addphieuform extends JPanel {
 		JLabel lblNewLabel_1_2 = new JLabel("Mã thuốc");
 		
 		mathuoc = new JTextField();
+		mathuoc.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				nhaphangcontrol.checkdv();
+			}
+		});
 		mathuoc.setColumns(10);
 		
 		JLabel lblThmThngTin = new JLabel("Thêm thông tin phiếu");
 		lblThmThngTin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblThmThngTin.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		JComboBox dv = new JComboBox();
-		dv.setModel(new DefaultComboBoxModel(new String[] {"VIEN"}));
-		
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+		dv = new JComboBox();		
+		sl = new JSpinner();
+		sl.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
 		RoundButton rndbtnNhp = new RoundButton();
+		rndbtnNhp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nhaphangcontrol.nhap();
+			}
+		});
 		rndbtnNhp.setText("Nhập");
 		
-		textField_2 = new JTextField();
-		textField_2.setText("150000");
-		textField_2.setEnabled(false);
-		textField_2.setColumns(10);
+		tongtien = new JTextField();
+		tongtien.setText("150000");
+		tongtien.setEnabled(false);
+		tongtien.setColumns(10);
 		
 		JLabel lblNewLabel_1_2_1_1_1 = new JLabel("Tổng tiền ");
 		GroupLayout gl_roundPanel = new GroupLayout(roundPanel);
@@ -98,7 +112,7 @@ public class addphieuform extends JPanel {
 						.addGroup(gl_roundPanel.createSequentialGroup()
 							.addComponent(lblNewLabel_1_2_1_1_1, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+							.addComponent(tongtien, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(rndbtnNhp, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_roundPanel.createSequentialGroup()
@@ -122,7 +136,7 @@ public class addphieuform extends JPanel {
 								.addComponent(lblNewLabel_1_2_1_1_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addGroup(gl_roundPanel.createParallelGroup(Alignment.BASELINE)
 									.addComponent(rndbtnNhp, GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-									.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))))
+									.addComponent(tongtien, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))))
 						.addGroup(gl_roundPanel.createSequentialGroup()
 							.addComponent(rndbtnBack, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -133,38 +147,55 @@ public class addphieuform extends JPanel {
 		);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"PA001", "GSK", "VIEN", "100", "2024-12-03", "1500"},
-			},
-			new String[] {
-				"M\u00E3 thu\u1ED1c", "M\u00E3 h\u00E3ng", "\u0110\u01A1n v\u1ECB", "S\u1ED1 l\u01B0\u1EE3ng", "Ng\u00E0y h\u1EBFt h\u1EA1n", "\u0110\u01A1n gi\u00E1"
-			}
-		));
 		scrollPane.setViewportView(table);
 		
 		JLabel lblNewLabel_2 = new JLabel("Sl");
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setDateFormatString("dd/MM/yyyy\r\n");
-		
+		date = new JDateChooser();
+		date.setDateFormatString("dd/MM/yyyy");
 		JLabel lblNewLabel_3 = new JLabel("Ngày hết hạn");
 		
 		RoundButton rndbtnThm = new RoundButton();
+		rndbtnThm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nhaphangcontrol.them();
+			}
+		});
 		rndbtnThm.setText("Thêm");
 		
 		RoundButton rndbtnXa = new RoundButton();
+		rndbtnXa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nhaphangcontrol.xoa();
+			}
+		});
 		rndbtnXa.setText("Xóa");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		hang = new JTextField();
+		hang.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				nhaphangcontrol.checkdv();
+			}
+		});
+		hang.setColumns(10);
 		
 		JLabel lblNewLabel_1_2_1 = new JLabel("Mã hãng thuốc");
 		
 		JLabel lblNewLabel_1_2_1_1 = new JLabel("Đơn giá");
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		dongia = new JTextField();
+		dongia.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c=e.getKeyChar();
+				if(!((c >= '0' && c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_ENTER)))
+				{
+					e.consume();
+				}
+			}
+		});
+		dongia.setColumns(10);
 		GroupLayout gl_roundPanel_1_1 = new GroupLayout(roundPanel_1_1);
 		gl_roundPanel_1_1.setHorizontalGroup(
 			gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
@@ -180,7 +211,7 @@ public class addphieuform extends JPanel {
 							.addGap(35)
 							.addComponent(lblNewLabel_1_2_1, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
 							.addGap(4)
-							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+							.addComponent(hang, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
 							.addGap(59))
 						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
 							.addGap(35)
@@ -194,19 +225,19 @@ public class addphieuform extends JPanel {
 							.addGap(35)
 							.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
 							.addGap(4)
-							.addComponent(spinner, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+							.addComponent(sl, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
 							.addGap(162))
 						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
 							.addGap(35)
 							.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
 							.addGap(4)
-							.addComponent(dateChooser, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+							.addComponent(date, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
 							.addGap(59))
 						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
 							.addGap(35)
 							.addComponent(lblNewLabel_1_2_1_1, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
 							.addGap(4)
-							.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+							.addComponent(dongia, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
 							.addGap(59))
 						.addGroup(Alignment.TRAILING, gl_roundPanel_1_1.createSequentialGroup()
 							.addGap(217)
@@ -235,7 +266,7 @@ public class addphieuform extends JPanel {
 						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
 							.addGap(3)
 							.addComponent(lblNewLabel_1_2_1))
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(hang, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(8)
 					.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
@@ -251,19 +282,19 @@ public class addphieuform extends JPanel {
 						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
 							.addGap(3)
 							.addComponent(lblNewLabel_2))
-						.addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(sl, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(11)
 					.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
 							.addGap(2)
 							.addComponent(lblNewLabel_3))
-						.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(date, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(6)
 					.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
 							.addGap(3)
 							.addComponent(lblNewLabel_1_2_1_1))
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(dongia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(39)
 					.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
 						.addComponent(rndbtnXa, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
@@ -330,6 +361,7 @@ public class addphieuform extends JPanel {
 		);
 		roundPanel_1.setLayout(gl_roundPanel_1);
 		roundPanel.setLayout(gl_roundPanel);
-
+		nhaphangcontrol.newtable();
+		nhaphangcontrol.checkdv();
 	}
 }

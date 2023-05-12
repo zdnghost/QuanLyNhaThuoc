@@ -26,6 +26,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class dsnhaphangform extends JPanel {
 	public static TableRowSorter sorter;
@@ -124,6 +126,12 @@ public class dsnhaphangform extends JPanel {
 		roundPanel_1.add(scrollPane, BorderLayout.CENTER);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dsnhaphangcontrol.load(table.getValueAt(table.getSelectedRow(),0).toString().trim());
+			}
+		});
 		scrollPane.setViewportView(table);
 		
 		ngaynhap = new JDateChooser();

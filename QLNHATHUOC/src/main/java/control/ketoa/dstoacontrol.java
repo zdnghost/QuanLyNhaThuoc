@@ -17,7 +17,7 @@ import control.nhaphang.dsnhaphangcontrol;
 import databese.db;
 import form.ketoa.dstoaform;
 import form.ketoa.tabketoa;
-import form.main.testmenu;
+import form.main.Mainframe;
 import form.nhaphang.dsnhaphangform;
 import model.nhacungcap.nhacungcap;
 import model.user.duocsi;
@@ -27,6 +27,10 @@ public class dstoacontrol {
 
 	public static void add() {
 		tabketoa.tabbedPane.setSelectedIndex(1);
+	}
+	public static void load(String ma) {
+		tabketoa.tabbedPane.setSelectedIndex(2);
+		thongtintoacontrol.load(ma);
 	}
 	public static void newtable() {
 
@@ -57,7 +61,7 @@ public class dstoacontrol {
 	}
 	public static void newcombo() {
 		DefaultComboBoxModel cbhang = new DefaultComboBoxModel(new String[] { "Tất cả" });
-		for(nhanvien a:testmenu.listnv.list)
+		for(nhanvien a:Mainframe.listnv.list)
 		{
 			if(a.getClass()==duocsi.class)
 			cbhang.addElement(a.getTen());

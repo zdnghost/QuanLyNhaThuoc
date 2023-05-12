@@ -26,7 +26,7 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import control.menu.menucontrol;
-import form.main.testmenu;
+import form.main.Mainframe;
 import swing.button.RoundButton;
 
 import javax.swing.JButton;
@@ -270,7 +270,7 @@ public class menuslide extends JPanel {
 			//dong menu
 		a=PropertySetter.createAnimator(90, menu,"size",menu.getSize(),new Dimension(btnMenu.getWidth(),getHeight()));
 		b=PropertySetter.createAnimator(90,btnMenu ,"location",btnMenu.getLocation(),new Point(0,0));
-		c=PropertySetter.createAnimator(90,testmenu.tabbedPane,"bounds",testmenu.tabbedPane.getBounds(),new Rectangle(btnMenu.getWidth(),testmenu.tabbedPane.getY(),1264+25-btnMenu.getWidth(),testmenu.tabbedPane.getHeight()));
+		c=PropertySetter.createAnimator(90,Mainframe.tabbedPane,"bounds",Mainframe.tabbedPane.getBounds(),new Rectangle(btnMenu.getWidth(),Mainframe.tabbedPane.getY(),1264+25-btnMenu.getWidth(),Mainframe.tabbedPane.getHeight()));
 		b.start();
 		a.start();	
 		c.start();
@@ -281,7 +281,7 @@ public class menuslide extends JPanel {
 			//mo menu
 			a=PropertySetter.createAnimator(90, menu,"size",menu.getSize(),new Dimension(getWidth(),getHeight()));
 			b=PropertySetter.createAnimator(90,btnMenu ,"location",btnMenu.getLocation(),new Point(getWidth()-btnMenu.getWidth(),0));
-			c=PropertySetter.createAnimator(90,testmenu.tabbedPane,"bounds",testmenu.tabbedPane.getBounds(),new Rectangle(getWidth(),testmenu.tabbedPane.getY(),1264+25-getWidth(),testmenu.tabbedPane.getHeight()));
+			c=PropertySetter.createAnimator(90,Mainframe.tabbedPane,"bounds",Mainframe.tabbedPane.getBounds(),new Rectangle(getWidth(),Mainframe.tabbedPane.getY(),1264+25-getWidth(),Mainframe.tabbedPane.getHeight()));
 			b.start();
 			a.start();
 			c.start();

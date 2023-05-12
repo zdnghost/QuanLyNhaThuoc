@@ -7,6 +7,9 @@ public class id {
 		this.id=id;
 		this.ten=ten;
 	}
+	public id() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getId() {
 		return id;
 	}

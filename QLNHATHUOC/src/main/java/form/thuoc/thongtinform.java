@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
+import control.thuoc.quydoicontrol;
 import control.thuoc.themthuoccontrol;
 import control.thuoc.thongtincontrol;
 
@@ -26,6 +27,10 @@ import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.util.prefs.BackingStoreException;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class thongtinform extends JPanel {
 	public static JTextField ma;
@@ -37,6 +42,8 @@ public class thongtinform extends JPanel {
 	public static JTextField dv;
 	public static JTextField qd;
 	public static JComboBox Phanloai;
+	public static JTextField gia;
+	public static RoundButton rndbtnLu;
 	/**
 	 * Create the panel.
 	 */
@@ -79,22 +86,9 @@ public class thongtinform extends JPanel {
 		
 		Phanloai = new JComboBox();
 		
-		RoundButton rndbtnSa = new RoundButton();
-		rndbtnSa.setText("Sửa");
-		rndbtnSa.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		rndbtnSa.setFocusPainted(false);
-		
 		JLabel lblNewLabel = new JLabel("Thông tin thuốc");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		
-		RoundButton rndbtnXa = new RoundButton();
-		rndbtnXa.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		rndbtnXa.setText("Xóa");
-		rndbtnXa.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		
 		hang = new JTextField();
 		hang.setEditable(false);
@@ -107,72 +101,96 @@ public class thongtinform extends JPanel {
 		JLabel lblquydoi = new JLabel("Quy đổi");
 		
 		qd = new JTextField();
+		qd.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c=e.getKeyChar();
+				if(!((c >= '0' && c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_ENTER)))
+				{
+					e.consume();
+				}
+			}
+		});
 		qd.setColumns(10);
+		
+		JLabel lblquydoi_1 = new JLabel("Giá");
+		
+		gia = new JTextField();
+		gia.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c=e.getKeyChar();
+				if(!((c >= '0' && c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_ENTER)))
+				{
+					e.consume();
+				}
+			}
+		});
+		gia.setColumns(10);
+		
+		rndbtnLu = new RoundButton();
+		rndbtnLu.setText("Lưu");
+		rndbtnLu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				thongtincontrol.update();
+			}
+		});
 		GroupLayout gl_roundPanel = new GroupLayout(roundPanel);
 		gl_roundPanel.setHorizontalGroup(
-			gl_roundPanel.createParallelGroup(Alignment.LEADING)
+			gl_roundPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(60)
-					.addComponent(lblten, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+					.addComponent(lblten, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
 					.addGap(10)
 					.addComponent(ten, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
 					.addGap(60))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(60)
-					.addComponent(lblhoatchat, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+					.addComponent(lblhoatchat, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
 					.addGap(10)
 					.addComponent(hc, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
 					.addGap(60))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(60)
+					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(lblhang, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblpl, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lbldv, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addComponent(lblhang, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-							.addGap(10))
-						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addComponent(lblpl, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED))
-						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addComponent(lbldv, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addComponent(Phanloai, 0, 342, Short.MAX_VALUE)
-							.addGap(60))
-						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addComponent(hang, GroupLayout.PREFERRED_SIZE, 342, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())
-						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addComponent(dv, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-							.addGap(60))))
+						.addComponent(Phanloai, 0, 342, Short.MAX_VALUE)
+						.addComponent(hang, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+						.addComponent(dv, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE))
+					.addGap(60))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(60)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblNewLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
 						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addComponent(lblma, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+							.addComponent(lblma, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
 							.addGap(10)
 							.addComponent(ma, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)))
 					.addGap(60))
 				.addGroup(gl_roundPanel.createSequentialGroup()
-					.addGap(324)
-					.addComponent(rndbtnXa, GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(rndbtnSa, GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(60)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addComponent(lblquydoi, GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+							.addComponent(lblquydoi_1, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
 							.addGap(10)
-							.addComponent(qd, GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-							.addGap(60))
+							.addComponent(gia, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE))
 						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addComponent(lblhamluong, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+							.addComponent(lblquydoi, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
 							.addGap(10)
-							.addComponent(hl, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-							.addGap(60))))
+							.addComponent(qd, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE))
+						.addGroup(gl_roundPanel.createSequentialGroup()
+							.addComponent(lblhamluong, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(hl, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)))
+					.addGap(60))
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addContainerGap(464, Short.MAX_VALUE)
+					.addComponent(rndbtnLu, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
 		gl_roundPanel.setVerticalGroup(
 			gl_roundPanel.createParallelGroup(Alignment.LEADING)
@@ -210,11 +228,13 @@ public class thongtinform extends JPanel {
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblquydoi, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 						.addComponent(qd, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
-					.addGap(495)
-					.addGroup(gl_roundPanel.createParallelGroup(Alignment.BASELINE, false)
-						.addComponent(rndbtnXa, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(rndbtnSa, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblquydoi_1, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+						.addComponent(gia, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+					.addGap(138)
+					.addComponent(rndbtnLu, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+					.addGap(700))
 		);
 		roundPanel.setLayout(gl_roundPanel);
 		
@@ -249,8 +269,8 @@ public class thongtinform extends JPanel {
 					.addComponent(rndbtnBack, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
-						.addComponent(roundPanel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE))
+						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 976, Short.MAX_VALUE)
+						.addComponent(roundPanel, GroupLayout.PREFERRED_SIZE, 652, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		panel_1.setLayout(new BorderLayout(0, 0));
@@ -259,6 +279,12 @@ public class thongtinform extends JPanel {
 		panel_1.add(scrollPane, BorderLayout.CENTER);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				quydoicontrol.load(ma.getText().trim(),hang.getText().trim(),dv.getText().trim(),table.getValueAt(table.getSelectedRow(),0).toString().trim());
+			}
+		});
 		scrollPane.setViewportView(table);
 		
 		JLabel lblNewLabel_3 = new JLabel("Thông tin số lượng trong kho");

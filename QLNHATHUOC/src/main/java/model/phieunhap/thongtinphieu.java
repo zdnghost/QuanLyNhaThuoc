@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 import databese.db;
 import model.phieunhap.*;
 import model.user.nhanvien;
@@ -20,13 +22,26 @@ public class thongtinphieu {
 	public thongtinphieu() {
 		// TODO Auto-generated constructor stub
 	}
-	public thongtinphieu(String maphieu,Date ngaynhap,String tennhacungcap,nhanvien phutrach,ArrayList<chitiet> chitiet) {
-		
-	}
-	public thongtinphieu(String maphieu,Date ngaynhap,String tennhacungcap,nhanvien phutrach) {
-		
-	}
 	
+	public thongtinphieu(String maphieu, Date ngaynhap, String tennhacungcap, nhanvien phutrach, int tong,
+			ArrayList<model.phieunhap.chitiet> chitiet) {
+		super();
+		this.maphieu = maphieu;
+		this.ngaynhap = ngaynhap;
+		this.tennhacungcap = tennhacungcap;
+		this.phutrach = phutrach;
+		this.tong = tong;
+		this.chitiet = chitiet;
+	}
+
+	public int getTong() {
+		return tong;
+	}
+
+	public void setTong(int tong) {
+		this.tong = tong;
+	}
+
 	public String getMaphieu() {
 		return maphieu;
 	}
@@ -58,18 +73,24 @@ public class thongtinphieu {
 		this.chitiet = chitiet;
 	}
 	public void nhap() {
-		String sql1 = "INSERT INTO PHIEUNHAPKHO VALUES(?,?,?,?)";
-		String sql2="INSERT INTO CHITIETPHIEU VAULES(?,?,?,?,?,?)";
-		db.conect();
-		if (db.con != null&&chitiet.size()>0){
+		if(chitiet.size()<1)
+		{
+			JOptionPane.showConfirmDialog(null,"Cập nhật thất bại");
+			return;
+		}
+		String sql1 = "INSERT INTO PHIEUNHAPKHO VALUES(?,?,?,?,?)";
+		String sql2="INSERT INTO CHITIETPHIEU VALUES(?,?,?,?,?,?,?)";
 			try{
+			db.conect();
 			db.con.setAutoCommit(false);
 			PreparedStatement prest =db.con.prepareStatement(sql1);
 			prest.setString(1, maphieu);
 			prest.setDate(2, new java.sql.Date(ngaynhap.getTime()));
 			prest.setString(3, tennhacungcap);
 			prest.setInt(4,phutrach.getMa());
+			prest.setInt(5,0);
 			prest.executeUpdate();
+			
 			prest =db.con.prepareStatement(sql2);
 			for(chitiet a:chitiet)
 			{
@@ -77,20 +98,23 @@ public class thongtinphieu {
 				prest.setString(2,a.getMathuoc());
 				prest.setString(3,a.getHangthuoc());
 				prest.setInt(4,a.getIddonvi());
-				prest.setInt(5, a.getSl());
+				prest.setInt(5,a.getSl());
 				prest.setDate(6,new java.sql.Date(a.getNgayhethan().getTime()));
+				prest.setInt(7, a.getDongia());
 				prest.executeUpdate();
 			}
 			db.con.commit();
 			db.con.setAutoCommit(true);
+			JOptionPane.showMessageDialog(null,"Tạo phiếu nhập thành công");
 			}
 			catch(SQLException e){
 				try {
 				db.con.rollback();
 				} catch (SQLException e1) {
-				System.out.println(e1); }
-				System.out.println(e); }
-				}
+				System.out.println(e1.toString()); }
+				e.printStackTrace(); }
+				
+		
 	}
 	public void load(String ma) {
 		chitiet=new ArrayList<chitiet>();

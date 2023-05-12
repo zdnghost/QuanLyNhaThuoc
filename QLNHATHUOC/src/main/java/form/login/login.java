@@ -9,6 +9,10 @@ import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
+import control.login.logincontrol;
+import form.main.Mainframe;
+import model.user.nhanvien;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import swing.panel.RoundPanel;
@@ -24,25 +28,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class login extends JFrame {
-
+	public static TextField email = new TextField();
+	public static PasswordField pass = new PasswordField();
 	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		FlatLightLaf.setup();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					login frame = new login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -65,24 +57,33 @@ public class login extends JFrame {
 		roundPanel.setRoundBottomLeft(50);
 		roundPanel.setRoundBottomRight(50);
 		roundPanel.setBackground(Color.WHITE);
+
+		pass.setLabelText("Password");
 		
-		PasswordField passwordField = new PasswordField();
-		passwordField.setLabelText("Password");
-		
-		passwordField.setShowAndHide(true);
+		pass.setShowAndHide(true);
 		
 		JLabel lblNewLabel = new JLabel("Đăng nhập");
 		lblNewLabel.setBackground(Color.LIGHT_GRAY);
 		lblNewLabel.setForeground(Color.BLACK);
-		passwordField.setBackground(new Color(0, 0, 0, 0));
+		pass.setBackground(new Color(0, 0, 0, 0));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 43));
 		
-		TextField textField = new TextField();
-		textField.setLabelText("User");
-		textField.setOpaque(false);
+		
+		email.setLabelText("Email");
+		email.setOpaque(false);
 		
 		RoundButton rndbtnLogin = new RoundButton();
+		rndbtnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				final nhanvien a=logincontrol.login();
+				if(a!=null) {
+						Mainframe frame = new Mainframe(a);
+						frame.setVisible(true);
+						dispose();
+				}
+			}
+		});
 		rndbtnLogin.setColorOver(new Color(51, 51, 255));
 		rndbtnLogin.setColorClick(new Color(51, 153, 255));
 		rndbtnLogin.setColor(new Color(0, 153, 255));
@@ -100,6 +101,8 @@ public class login extends JFrame {
 		rndbtnQunMtKhu.setVerticalAlignment(SwingConstants.TOP);
 		rndbtnQunMtKhu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				logincontrol.fogot();
+				dispose();
 			}
 		});
 		rndbtnQunMtKhu.setForeground(new Color(0, 51, 255));
@@ -123,8 +126,8 @@ public class login extends JFrame {
 							.addGroup(gl_roundPanel.createSequentialGroup()
 								.addGap(16)
 								.addGroup(gl_roundPanel.createParallelGroup(Alignment.TRAILING)
-									.addComponent(passwordField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
-									.addComponent(textField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)))
+									.addComponent(pass, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+									.addComponent(email, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)))
 							.addGroup(gl_roundPanel.createSequentialGroup()
 								.addGap(46)
 								.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
@@ -137,9 +140,9 @@ public class login extends JFrame {
 					.addContainerGap()
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
 					.addGap(14)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(email, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+					.addComponent(pass, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(rndbtnQunMtKhu, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(30)

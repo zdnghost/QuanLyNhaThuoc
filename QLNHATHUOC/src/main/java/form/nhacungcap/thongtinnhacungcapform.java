@@ -9,25 +9,22 @@ import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
 import control.nhacungcap.themnhacungcapcontrol;
+import control.nhacungcap.thongtinnhacungcapcontrol;
 import control.thuoc.themthuoccontrol;
 import swing.button.RoundButton;
 import swing.panel.RoundPanel;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
-public class themnhacungcapform extends JPanel {
+public class thongtinnhacungcapform extends JPanel {
+
 	public static JTextField ma;
 	public static JTextField ten;
 	public static JTextField email;
@@ -36,19 +33,20 @@ public class themnhacungcapform extends JPanel {
 	public static DefaultComboBoxModel cbhang;
 	public static JTextField dc;
 	public static JTextField sdt;
-	public static JTextField mdn;
+	public static JTextField madn;
+	public static RoundButton rndbtnLuu;
 
 	/**
 	 * Create the panel.
 	 */
-	public themnhacungcapform() {
+	public thongtinnhacungcapform() {
 		FlatLightLaf.setup();
 		setLayout(new BorderLayout(0, 0));
 		setSize(1213,707);
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.CENTER);
 		panel.setBackground(SystemColor.activeCaption);
-		JLabel lblNewLabel = new JLabel("Nhà cung cấp mới");
+		JLabel lblNewLabel = new JLabel("Nhà cung cấp");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		
@@ -58,6 +56,7 @@ public class themnhacungcapform extends JPanel {
 		JLabel lblNewLabel_1 = new JLabel("Mã nhà cung cấp");
 		
 		ma = new JTextField();
+		ma.setEditable(false);
 		ma.setColumns(10);
 		
 		ten = new JTextField();
@@ -114,44 +113,24 @@ public class themnhacungcapform extends JPanel {
 					.addContainerGap(129, Short.MAX_VALUE))
 		);
 		
-		RoundButton rndbtnThm = new RoundButton();
-		rndbtnThm.addActionListener(new ActionListener() {
+		rndbtnLuu = new RoundButton();
+		rndbtnLuu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				themnhacungcapcontrol.add();
+				thongtinnhacungcapcontrol.save();
 			}
 		});
-		rndbtnThm.setFocusPainted(false);
-		rndbtnThm.setText("Thêm");
-		rndbtnThm.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		rndbtnLuu.setFocusPainted(false);
+		rndbtnLuu.setText("Lưu");
+		rndbtnLuu.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		dc = new JTextField();
 		dc.setColumns(10);
 		
 		sdt = new JTextField();
-		sdt.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				char c=e.getKeyChar();
-				if(!((c >= '0' && c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_ENTER)))
-				{
-					e.consume();
-				}
-			}
-		});
 		sdt.setColumns(10);
 		
-		mdn = new JTextField();
-		mdn.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				char c=e.getKeyChar();
-				if(!((c >= '0' && c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_ENTER)))
-				{
-					e.consume();
-				}
-			}
-		});
-		mdn.setColumns(10);
+		madn = new JTextField();
+		madn.setColumns(10);
 		GroupLayout gl_roundPanel = new GroupLayout(roundPanel);
 		gl_roundPanel.setHorizontalGroup(
 			gl_roundPanel.createParallelGroup(Alignment.LEADING)
@@ -175,7 +154,7 @@ public class themnhacungcapform extends JPanel {
 					.addGap(60))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(239)
-					.addComponent(rndbtnThm, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+					.addComponent(rndbtnLuu, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
 					.addGap(240))
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(60)
@@ -187,7 +166,7 @@ public class themnhacungcapform extends JPanel {
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(dc, GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
 						.addComponent(sdt, GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
-						.addComponent(mdn, GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE))
+						.addComponent(madn, GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE))
 					.addGap(60))
 		);
 		gl_roundPanel.setVerticalGroup(
@@ -212,17 +191,16 @@ public class themnhacungcapform extends JPanel {
 					.addGap(11)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNewLabel_2_2, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addComponent(mdn, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
+						.addComponent(madn, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
 					.addGap(11)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNewLabel_1_2_1, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 						.addComponent(email, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
 					.addGap(28)
-					.addComponent(rndbtnThm, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+					.addComponent(rndbtnLuu, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
 					.addGap(60))
 		);
 		roundPanel.setLayout(gl_roundPanel);
 		panel.setLayout(gl_panel);
 	}
-
 }

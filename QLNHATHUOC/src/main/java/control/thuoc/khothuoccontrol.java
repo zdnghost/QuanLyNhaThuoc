@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 import databese.db;
-import form.main.testmenu;
+import form.main.Mainframe;
 import form.thuoc.*;
 import model.nhacungcap.nhacungcap;
 import model.thuoc.id;
@@ -35,8 +35,8 @@ public class khothuoccontrol {
 				return columnEditables[column];
 			}
 		};
-		testmenu.kho.load();
-		for(thuoc a:testmenu.kho.listthuoc) {
+		Mainframe.kho.load();
+		for(thuoc a:Mainframe.kho.listthuoc) {
 		khothuocform.model.addRow(new Object[] {a.getMathuoc(),a.getTenthuoc(),a.getHangthuoc(),a.getPhanloai().getTen(),a.getDonvi().getTen(),a.getHoatchat(),a.getHamluong()});
 		}
 		khothuocform.table.setModel(khothuocform.model);
@@ -49,29 +49,30 @@ public class khothuoccontrol {
 		khothuocform.table.getColumnModel().getColumn(6).setResizable(false);
 		khothuocform.sorter=new TableRowSorter(khothuocform.table.getModel());
 		khothuocform.table.setRowSorter(khothuocform.sorter);
+		filter(khothuocform.mathuoc.getText().trim(),khothuocform.tenthuoc.getText().trim(),khothuocform.Hang.getSelectedItem().toString(),khothuocform.Phanloai.getSelectedItem().toString(),khothuocform.Donvi.getSelectedItem().toString(),khothuocform.hoatchat.getText().trim());
 	}
 
 
 	public static void newlist() {
 		khothuocform.cbphanloai = new DefaultComboBoxModel(new String[] { "Tất cả" });
-		testmenu.listpl.load();
-		testmenu.listdv.load();
-		testmenu.listcc.load();
-		for(id a:testmenu.listpl.list)
+		Mainframe.listpl.load();
+		Mainframe.listdv.load();
+		Mainframe.listcc.load();
+		for(id a:Mainframe.listpl.list)
 		{
 			khothuocform.cbphanloai.addElement(a.getTen());
 		}
 		khothuocform.Phanloai.setModel(khothuocform.cbphanloai);
 //
 		khothuocform.cbdonvi = new DefaultComboBoxModel(new String[] { "Tất cả" });
-		for(id a:testmenu.listdv.list)
+		for(id a:Mainframe.listdv.list)
 		{
 			khothuocform.cbdonvi.addElement(a.getTen());
 		}
 		khothuocform.Donvi.setModel(khothuocform.cbdonvi);
 //
 		khothuocform.cbhang = new DefaultComboBoxModel(new String[] { "Tất cả" });
-		for(nhacungcap a:testmenu.listcc.list)
+		for(nhacungcap a:Mainframe.listcc.list)
 		{
 			khothuocform.cbhang.addElement(a.getMa());
 		}
@@ -86,37 +87,6 @@ public class khothuoccontrol {
 	}
 	public static void addpanel() {
 		tabkhothuoc.tabbedPane.setSelectedIndex(1);
-	}
-	public static void export() {
-		try {
-			String path=null;
-			JFileChooser chooser = new JFileChooser();
-			chooser.setDialogTitle("Save");
-			chooser.setApproveButtonText("Save");
-			int returnVal = chooser.showOpenDialog(null); // parent là đối tượng JFrame hoặc JDialog cha của bảng chọn file			
-			if (returnVal == JFileChooser.APPROVE_OPTION) {
-			    File selectedFile = chooser.getSelectedFile();
-			    path=selectedFile.getPath();
-			    System.out.print(path+".xlsx");
-			    // làm gì đó với tệp đã chọn
-			    boolean success =false;
-		        if (success) {
-		            System.out.println("Tao tep thanh cong: " + selectedFile.getAbsolutePath());
-		        } else {
-		            System.out.println("khong the tao tep");
-		            if(JOptionPane.showConfirmDialog(null, "ban chac chua?", "thong bao", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
-					{
-					}
-		        }
-			}
-			else {
-				return;
-			}
-			
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null,"khong the luu file");
-        }
 	}
 	public static void filter(String ma,String ten,String hang,String pl,String dv,String hc) {
 		RowFilter rf=null;

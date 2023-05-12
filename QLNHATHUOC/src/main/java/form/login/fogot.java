@@ -13,31 +13,27 @@ import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+import javax.xml.transform.Templates;
 
+import control.login.fogotcontrol;
+import form.main.Mainframe;
+import model.user.listnhanvien;
+import model.user.nhanvien;
 import swing.button.RoundButton;
 import swing.panel.RoundPanel;
 import swing.textfield.PasswordField;
 import swing.textfield.TextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class fogot extends JFrame {
-
+	public static TextField email = new TextField();
+	public static TextField ma = new TextField();
 	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					fogot frame = new fogot();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -66,11 +62,16 @@ public class fogot extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 43));
 		
-		TextField textField = new TextField();
-		textField.setLabelText("Email");
-		textField.setOpaque(false);
+		
+		email.setLabelText("Email");
+		email.setOpaque(false);
 		
 		RoundButton rndbtnLogin = new RoundButton();
+		rndbtnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fogotcontrol.gui();
+			}
+		});
 		rndbtnLogin.setForeground(new Color(255, 255, 255));
 		rndbtnLogin.setRadius(10);
 		rndbtnLogin.setColorOver(new Color(0, 51, 255));
@@ -81,6 +82,12 @@ public class fogot extends JFrame {
 		rndbtnLogin.setText("Gửi");
 		
 		RoundButton rndbtnQunMtKhu = new RoundButton();
+		rndbtnQunMtKhu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fogotcontrol.login();
+				dispose();
+			}
+		});
 		rndbtnQunMtKhu.setForeground(new Color(255, 255, 255));
 		rndbtnQunMtKhu.setRadius(10);
 		rndbtnQunMtKhu.setColorOver(new Color(0, 51, 255));
@@ -90,11 +97,28 @@ public class fogot extends JFrame {
 		rndbtnQunMtKhu.setBackground(new Color(0, 153, 255));
 		rndbtnQunMtKhu.setText("Đăng nhập");
 		
-		TextField textField_1 = new TextField();
-		textField_1.setOpaque(false);
-		textField_1.setLabelText("Mã xác nhận");
+		
+		ma.setOpaque(false);
+		ma.setLabelText("Mã xác nhận");
 		
 		RoundButton rndbtnQunMtKhu_1 = new RoundButton();
+		rndbtnQunMtKhu_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(fogotcontrol.xacnhan()) {
+					listnhanvien a=new listnhanvien();
+					a.load();
+					nhanvien user=null;
+					for(nhanvien b:a.list) {
+						if(email.getText().trim().equals(b.getEmail().trim())) {
+							user=b;
+						}
+					}
+					Mainframe frame = new Mainframe(user);
+					frame.setVisible(true);
+					dispose();
+				}
+			}
+		});
 		rndbtnQunMtKhu_1.setForeground(new Color(255, 255, 255));
 		rndbtnQunMtKhu_1.setRadius(10);
 		rndbtnQunMtKhu_1.setColorOver(new Color(0, 51, 255));
@@ -109,9 +133,9 @@ public class fogot extends JFrame {
 				.addGroup(gl_roundPanel.createSequentialGroup()
 					.addGap(19)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+						.addComponent(ma, GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
 						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+							.addComponent(email, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
 							.addGap(18)
 							.addComponent(rndbtnLogin, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)))
 					.addContainerGap())
@@ -134,9 +158,9 @@ public class fogot extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(rndbtnLogin, GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(email, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(ma, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(rndbtnQunMtKhu_1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 					.addGap(12)

@@ -47,7 +47,7 @@ public class dsnhanvienform extends JPanel {
 		add(panel, BorderLayout.CENTER);
 		
 		RoundPanel btnpanel = new RoundPanel();
-		btnpanel.setLayout(new GridLayout(0, 2, 0, 0));
+		btnpanel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		RoundButton rndbtnThm = new RoundButton();
 		rndbtnThm.addActionListener(new ActionListener() {
@@ -58,15 +58,6 @@ public class dsnhanvienform extends JPanel {
 		rndbtnThm.setText("Thêm");
 		rndbtnThm.setFocusPainted(false);
 		btnpanel.add(rndbtnThm);
-		
-		RoundButton rndbtnXut = new RoundButton();
-		rndbtnXut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		rndbtnXut.setText("Xuất file danh sách");
-		rndbtnXut.setFocusPainted(false);
-		btnpanel.add(rndbtnXut);
 		
 		RoundPanel roundPanel_1 = new RoundPanel();
 		roundPanel_1.setLayout(new BorderLayout(0, 0));
@@ -102,20 +93,19 @@ public class dsnhanvienform extends JPanel {
 		btnfilter.setText("Tìm kiếm");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
+			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(btnpanel, GroupLayout.PREFERRED_SIZE, 278, GroupLayout.PREFERRED_SIZE))
-						.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
-							.addGap(20)
-							.addComponent(roundPanel_1, GroupLayout.DEFAULT_SIZE, 1173, Short.MAX_VALUE)))
+					.addGap(20)
+					.addComponent(roundPanel_1, GroupLayout.DEFAULT_SIZE, 1173, Short.MAX_VALUE)
 					.addGap(20))
-				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(100)
 					.addComponent(roundPanel, GroupLayout.DEFAULT_SIZE, 1013, Short.MAX_VALUE)
 					.addGap(100))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap(1051, Short.MAX_VALUE)
+					.addComponent(btnpanel, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
+					.addGap(20))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)

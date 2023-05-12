@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 import databese.db;
-import form.main.testmenu;
+import form.main.Mainframe;
 import form.nhaphang.dsnhaphangform;
 import form.nhaphang.tabnhaphang;
 import form.thuoc.khothuocform;
@@ -28,6 +28,11 @@ public class dsnhaphangcontrol {
 	public static void add() {
 		tabnhaphang.tabbedPane.setSelectedIndex(1);
 	}
+	public static void load(String ma) {
+		tabnhaphang.tabbedPane.setSelectedIndex(2);
+		thongtinphieucontrol.load(ma);
+	}
+	
 	public static void newtable() {
 
 		dsnhaphangform.table.getTableHeader().setReorderingAllowed(false);
@@ -38,7 +43,7 @@ public class dsnhaphangcontrol {
 				return columnEditables[column];
 			}
 		};
-		for(thongtinphieu a:testmenu.listp.list) {
+		for(thongtinphieu a:Mainframe.listp.list) {
 			dsnhaphangform.model.addRow(new Object[] {a.getMaphieu(),a.getTennhacungcap(),a.getPhutrach().getTen(),a.getNgaynhap() });
 		}
 		dsnhaphangform.table.setModel(dsnhaphangform.model);
@@ -50,7 +55,7 @@ public class dsnhaphangcontrol {
 	}
 	public static void newcombo() {
 		DefaultComboBoxModel cbhang = new DefaultComboBoxModel(new String[] { "Tất cả" });
-		for(nhacungcap a:testmenu.listcc.list)
+		for(nhacungcap a:Mainframe.listcc.list)
 		{
 			cbhang.addElement(a.getMa());
 		}

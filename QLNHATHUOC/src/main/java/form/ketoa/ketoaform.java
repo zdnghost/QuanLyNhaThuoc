@@ -25,14 +25,24 @@ import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.AncestorEvent;
+import javax.swing.SpinnerNumberModel;
 
 public class ketoaform extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_3;
-	private JTextField textField_2;
-	private JTextField textField_4;
-	private JTable table;
+	public static JTextField mathuoc;
+	public static  JTextField mahang;
+	public static  JTextField matoa;
+	public static  JTextField gc;
+	public static  JTextField tongtien;
+	public static  JTable table;
+	public static JComboBox dv;
+	public static JSpinner sl;
+	public static JComboBox lo;
 
 	/**
 	 * Create the panel.
@@ -45,6 +55,11 @@ public class ketoaform extends JPanel {
 		add(roundPanel, BorderLayout.CENTER);
 		
 		RoundButton rndbtnNhp = new RoundButton();
+		rndbtnNhp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ketoacontrol.thanhtoan();
+			}
+		});
 		rndbtnNhp.setText("Thanh toán");
 		
 		RoundButton rndbtnBack = new RoundButton();
@@ -66,26 +81,56 @@ public class ketoaform extends JPanel {
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Mã thuốc");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		mathuoc = new JTextField();
+		mathuoc.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				ketoacontrol.checkdv();
+			}
+		
+		});
+		mathuoc.setColumns(10);
 		
 		JLabel lblNewLabel_1_1_2 = new JLabel("Đơn vị");
+
+		sl = new JSpinner();
+		sl.setEnabled(false);
+		sl.setModel(new SpinnerNumberModel(0, 0, 0, 1));
 		
-		JSpinner spinner = new JSpinner();
-		
-		JComboBox dv = new JComboBox();
-		dv.setModel(new DefaultComboBoxModel(new String[] {"VIEN"}));
+		dv = new JComboBox();
+		dv.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				ketoacontrol.checklo();
+			}
+		});
+		dv.setEnabled(false);
 		
 		JLabel lblNewLabel_2 = new JLabel("Sl");
 		
 		RoundButton rndbtnThm = new RoundButton();
+		rndbtnThm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ketoacontrol.them();
+			}
+		});
 		rndbtnThm.setText("Thêm");
 		
 		RoundButton rndbtnXa = new RoundButton();
+		rndbtnXa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ketoacontrol.xoa();
+			}
+		});
 		rndbtnXa.setText("Xóa");
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		mahang = new JTextField();
+		mahang.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				ketoacontrol.checkdv();
+			}
+		});
+		mahang.setColumns(10);
 		
 		JLabel lblNewLabel_1_2_1 = new JLabel("Mã hãng thuốc");
 		
@@ -100,8 +145,8 @@ public class ketoaform extends JPanel {
 		
 		JLabel lblNewLabel_1 = new JLabel("Mã toa");
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
+		matoa = new JTextField();
+		matoa.setColumns(10);
 		GroupLayout gl_roundPanel_1 = new GroupLayout(roundPanel_1);
 		gl_roundPanel_1.setHorizontalGroup(
 			gl_roundPanel_1.createParallelGroup(Alignment.LEADING)
@@ -118,7 +163,7 @@ public class ketoaform extends JPanel {
 						.addGroup(gl_roundPanel_1.createSequentialGroup()
 							.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_3, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+							.addComponent(matoa, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
 							.addGap(86))))
 		);
 		gl_roundPanel_1.setVerticalGroup(
@@ -129,7 +174,7 @@ public class ketoaform extends JPanel {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_roundPanel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_1)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(matoa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(35)
 					.addComponent(lblNewLabel_1_1_1)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -140,9 +185,9 @@ public class ketoaform extends JPanel {
 		
 		JLabel lblNewLabel_1_2_1_2 = new JLabel("Tổng tiền");
 		
-		textField_4 = new JTextField();
-		textField_4.setEditable(false);
-		textField_4.setColumns(10);
+		tongtien = new JTextField();
+		tongtien.setEditable(false);
+		tongtien.setColumns(10);
 		GroupLayout gl_roundPanel = new GroupLayout(roundPanel);
 		gl_roundPanel.setHorizontalGroup(
 			gl_roundPanel.createParallelGroup(Alignment.TRAILING)
@@ -159,7 +204,7 @@ public class ketoaform extends JPanel {
 						.addGroup(gl_roundPanel.createSequentialGroup()
 							.addComponent(lblNewLabel_1_2_1_2, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
+							.addComponent(tongtien, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(rndbtnNhp, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
@@ -182,28 +227,27 @@ public class ketoaform extends JPanel {
 							.addGroup(gl_roundPanel.createSequentialGroup()
 								.addPreferredGap(ComponentPlacement.RELATED, 3, Short.MAX_VALUE)
 								.addComponent(lblNewLabel_1_2_1_2, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-							.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+							.addComponent(tongtien, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 						.addComponent(rndbtnNhp, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"M\u00E3 thu\u1ED1c", "H\u00E3ng", "\u0110\u01A1n v\u1ECB", "L\u00F4 thu\u1ED1c", "S\u1ED1 l\u01B0\u1EE3ng", "Ghi ch\u00FA"
-			}
-		));
+		table.setModel(new DefaultTableModel());
 		scrollPane.setViewportView(table);
 		
 		JLabel lblNewLabel_1_2_1_1 = new JLabel("Ghi chú");
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		gc = new JTextField();
+		gc.setColumns(10);
 		
-		JComboBox dv_1 = new JComboBox();
-		dv_1.setModel(new DefaultComboBoxModel(new String[] {"P0001"}));
+		lo = new JComboBox();
+		lo.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				ketoacontrol.setmaxsl();
+			}
+		});
+		lo.setEnabled(false);
 		
 		JLabel lblNewLabel_1_1_2_1 = new JLabel("Lô thuốc");
 		GroupLayout gl_roundPanel_1_1 = new GroupLayout(roundPanel_1_1);
@@ -217,13 +261,13 @@ public class ketoaform extends JPanel {
 					.addGap(35)
 					.addComponent(lblNewLabel_1_2, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
 					.addGap(4)
-					.addComponent(textField, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+					.addComponent(mathuoc, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
 					.addGap(69))
 				.addGroup(gl_roundPanel_1_1.createSequentialGroup()
 					.addGap(35)
 					.addComponent(lblNewLabel_1_2_1, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
 					.addGap(4)
-					.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+					.addComponent(mahang, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
 					.addGap(69))
 				.addGroup(gl_roundPanel_1_1.createSequentialGroup()
 					.addGap(35)
@@ -237,19 +281,19 @@ public class ketoaform extends JPanel {
 					.addGap(35)
 					.addComponent(lblNewLabel_1_1_2_1, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
 					.addGap(4)
-					.addComponent(dv_1, 0, 189, Short.MAX_VALUE)
+					.addComponent(lo, 0, 189, Short.MAX_VALUE)
 					.addGap(69))
 				.addGroup(gl_roundPanel_1_1.createSequentialGroup()
 					.addGap(35)
 					.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
 					.addGap(4)
-					.addComponent(spinner, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+					.addComponent(sl, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
 					.addGap(172))
 				.addGroup(gl_roundPanel_1_1.createSequentialGroup()
 					.addGap(35)
 					.addComponent(lblNewLabel_1_2_1_1, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
 					.addGap(4)
-					.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+					.addComponent(gc, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
 					.addGap(69))
 				.addGroup(gl_roundPanel_1_1.createSequentialGroup()
 					.addGap(217)
@@ -267,13 +311,13 @@ public class ketoaform extends JPanel {
 						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
 							.addGap(3)
 							.addComponent(lblNewLabel_1_2))
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(mathuoc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(8)
 					.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
 							.addGap(3)
 							.addComponent(lblNewLabel_1_2_1))
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(mahang, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(8)
 					.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
@@ -289,19 +333,19 @@ public class ketoaform extends JPanel {
 						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
 							.addGap(4)
 							.addComponent(lblNewLabel_1_1_2_1))
-						.addComponent(dv_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(11)
 					.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
 							.addGap(3)
 							.addComponent(lblNewLabel_2))
-						.addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(sl, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(11)
 					.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_roundPanel_1_1.createSequentialGroup()
 							.addGap(3)
 							.addComponent(lblNewLabel_1_2_1_1))
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(gc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(11)
 					.addGroup(gl_roundPanel_1_1.createParallelGroup(Alignment.LEADING)
 						.addComponent(rndbtnXa, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
@@ -309,5 +353,6 @@ public class ketoaform extends JPanel {
 		);
 		roundPanel_1_1.setLayout(gl_roundPanel_1_1);
 		roundPanel.setLayout(gl_roundPanel);
+		ketoacontrol.newtable();
 	}
 }

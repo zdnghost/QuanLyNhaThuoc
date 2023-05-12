@@ -47,6 +47,7 @@ public class khothuocform extends JPanel {
 	public static JComboBox Donvi=new JComboBox();
 	public static JComboBox Phanloai=new JComboBox();
 	public static JComboBox Hang =new JComboBox();
+	public static RoundButton rndbtnThm ;
 
 	/**
 	 * Create the panel.
@@ -59,9 +60,8 @@ public class khothuocform extends JPanel {
 		panel = new JPanel();
 		panel.setBackground(SystemColor.activeCaption);
 		
-		RoundPanel btnpanel = new RoundPanel();
 		
-		RoundButton rndbtnThm = new RoundButton();
+		rndbtnThm = new RoundButton();
 		rndbtnThm.setFocusPainted(false);
 		rndbtnThm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -69,15 +69,6 @@ public class khothuocform extends JPanel {
 			}
 		});
 		rndbtnThm.setText("Thêm");
-		
-		RoundButton rndbtnXut = new RoundButton();
-		rndbtnXut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				khothuoccontrol.export();
-			}
-		});
-		rndbtnXut.setFocusPainted(false);
-		rndbtnXut.setText("Xuất file danh sách");
 		
 		RoundPanel roundPanel_1 = new RoundPanel();
 		
@@ -224,7 +215,7 @@ public class khothuocform extends JPanel {
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(btnpanel, GroupLayout.PREFERRED_SIZE, 278, GroupLayout.PREFERRED_SIZE))
+							.addComponent(rndbtnThm, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(20)
 							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
@@ -240,14 +231,11 @@ public class khothuocform extends JPanel {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(roundPanel_1, GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
 					.addGap(11)
-					.addComponent(btnpanel, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addComponent(rndbtnThm, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 					.addGap(24))
 		);
 		roundPanel_1.setLayout(new BorderLayout(0, 0));
 		roundPanel_1.add(scrollPane);
-		btnpanel.setLayout(new GridLayout(0, 2, 0, 0));
-		btnpanel.add(rndbtnThm);
-		btnpanel.add(rndbtnXut);
 		panel.setLayout(gl_panel);
 		add(panel);
 		addComponentListener(new ComponentAdapter() {

@@ -6,12 +6,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 import databese.db;
 import form.nhanvien.dsnhanvienform;
 import model.toathuoc.*;
 import model.user.duocsi;
 
 public class thongtintoa {
+	public thongtintoa(String maphieu, Date ngayke, duocsi ds, int tong, ArrayList<model.toathuoc.chitiet> chitiet) {
+		super();
+		this.maphieu = maphieu;
+		this.ngayke = ngayke;
+		this.ds = ds;
+		this.tong = tong;
+		this.chitiet = chitiet;
+	}
 	private String maphieu;
 	private Date ngayke;
 	private duocsi ds;
@@ -51,10 +61,14 @@ public class thongtintoa {
 			// TODO Auto-generated constructor stub
 		}
 		public void nhap() {
-			String sql1 = "INSERT INTO TOATHUOC VALUES(?,?,?,?)";
-			String sql2="INSERT INTO CHITIETTOA VAULES(?,?,?,?,?,?,?)";
+			if(chitiet.size()<1)
+			{
+				JOptionPane.showMessageDialog(null,"Cập nhật thất bại");
+				return;
+			}
+			String sql1 = "INSERT INTO TOATHUOC VALUES(?,?,?,?,?)";
+			String sql2="INSERT INTO CHITIETTOA VALuES(?,?,?,?,?,?,?)";
 			db.conect();
-			if (db.con != null&&chitiet.size()>0){
 				try{
 				db.con.setAutoCommit(false);
 				PreparedStatement prest =db.con.prepareStatement(sql1);
@@ -77,18 +91,20 @@ public class thongtintoa {
 				}
 				db.con.commit();
 				db.con.setAutoCommit(true);
+				db.disconect();
+				JOptionPane.showMessageDialog(null,"Kê toa thành công");
 				}
 				catch(SQLException e){
-					try {
-					db.con.rollback();
-					} catch (SQLException e1) {
-					System.out.println(e1); }
-					System.out.println(e); }
+						try {
+						db.con.rollback();
+						} catch (SQLException e1) {
+						System.out.println(e1); }
+					System.out.println(e); 
 					}
-		}
+				}
 		public void load(String ma) {
 			chitiet=new ArrayList<chitiet>();
-			String sql1 = "select * from TOATHUOC";
+			String sql1 = "select * from TOATHUOC where MATOA='"+ma+"'";
 			String sql2="select * from dbo.fn_getChitietToa('"+ma+"')";
 			db.conect();
 			if (db.con != null){

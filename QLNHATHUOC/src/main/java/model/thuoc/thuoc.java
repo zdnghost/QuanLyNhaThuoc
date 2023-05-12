@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import databese.db;
 
 public class thuoc  {
@@ -16,12 +18,10 @@ public class thuoc  {
 	private id donvi;
 	private ArrayList<lothuoc> lohang;//lô hàng
 	private int quydoi;
-	public thuoc() {
-		
-		// TODO Auto-generated constructor stub
-	}
+	private int giaban;
+	
 	public thuoc(String mathuoc, String hangthuoc, String tenthuoc, String hoatchat, String hamluong, id phanloai,
-			id donvi, ArrayList<lothuoc> lohang,int quydoi) {
+			id donvi, ArrayList<lothuoc> lohang, int quydoi, int giaban) {
 		super();
 		this.mathuoc = mathuoc;
 		this.hangthuoc = hangthuoc;
@@ -31,7 +31,18 @@ public class thuoc  {
 		this.phanloai = phanloai;
 		this.donvi = donvi;
 		this.lohang = lohang;
-		this.quydoi=quydoi;
+		this.quydoi = quydoi;
+		this.giaban = giaban;
+	}
+	public thuoc() {
+		
+		// TODO Auto-generated constructor stub
+	}
+	public int getGiaban() {
+		return giaban;
+	}
+	public void setGiaban(int giaban) {
+		this.giaban = giaban;
 	}
 	public int getQuydoi() {
 		return quydoi;
@@ -87,10 +98,30 @@ public class thuoc  {
 	public void setLohang(ArrayList<lothuoc> lohang) {
 		this.lohang = lohang;
 	}
-	public void updatett(String ten,int pl,String hc,String hl) {
-		
-		
-		
+	public void add() {
+		String sql="INSERT INTO THUOC VALUES(?,?,?,?,?,?,?,?,?)";
+		try {
+			db.conect();
+			PreparedStatement pres=db.con.prepareStatement(sql);
+			pres.setString(1,mathuoc);
+			pres.setString(2,hangthuoc);
+			pres.setString(3,tenthuoc);
+			pres.setInt(4,phanloai.getId());
+			pres.setInt(5,donvi.getId()); 
+			pres.setString(6,hoatchat);
+			pres.setString(7,hamluong);
+			pres.setInt(8,giaban); 
+			pres.setInt(9,quydoi); 
+			pres.execute();
+			db.disconect();
+			JOptionPane.showMessageDialog(null,"Thêm thuốc thành công");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.print(e.toString());
+			JOptionPane.showMessageDialog(null,"Thêm thuốc thất bại");
+		}	
+	}
+	public boolean updatett(String ten,int pl,String hc,String hl) {
 		String sql="update THUOC set TENTHUOC=? ,IDPHANLOAI=?,HOATCHAT=? ,HAMLUONG=? where MATHUOC=? and HANGTHUOC=?";
 		try {
 			db.conect();
@@ -104,32 +135,32 @@ public class thuoc  {
 			pres.setString(6,hangthuoc);
 			pres.execute();
 			db.disconect();
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
+			JOptionPane.showMessageDialog(null,"Cập nhật thông tin thất bại");
+			return false;
+		}		
 	}
-	public void updateqd(int qd) {
-		String sql="update THUOC set QUYDOI=? where MATHUOC=? and HANGTHUOC=? and IDDONVI=?";
+	public boolean updateqdgb(int qd,int gia) {
+		String sql="update THUOC set QUYDOI=?,GIABAN=? where MATHUOC=? and HANGTHUOC=? and IDDONVI=?";
 		try {
 			db.conect();
 			PreparedStatement pres=db.con.prepareStatement(sql);
 			pres.setInt(1,qd);
-			pres.setString(2,mathuoc); 
-			pres.setString(3,hangthuoc);
-			pres.setInt(4,donvi.getId());
+			pres.setInt(2, gia);
+			pres.setString(3,mathuoc); 
+			pres.setString(4,hangthuoc);
+			pres.setInt(5,donvi.getId());
 			pres.execute();
 			db.disconect();
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,"Cập nhật Quy đổi hoặc Giá bán thất bại");
+			return false;
 		}	
-	}
-	
-	public static void main(String[] args) {
-		kho a =new kho();
-		System.out.print(a.listthuoc.get(0).getQuydoi());
 	}
 }

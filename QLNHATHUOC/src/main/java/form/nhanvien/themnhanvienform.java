@@ -24,19 +24,26 @@ import swing.panel.RoundPanel;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JRadioButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
 import javax.swing.ButtonGroup;
+import javax.swing.JPasswordField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class themnhanvienform extends JPanel {
-	private JTextField tensp;
-	private JTextField hoatchat;
-	public static DefaultComboBoxModel cbphanloai;
-	public static DefaultComboBoxModel cbdonvi;
-	public static DefaultComboBoxModel cbhang;
-	private JTextField textField;
-	private JTextField textField_1;
-	private final ButtonGroup chucvu = new ButtonGroup();
-	private final ButtonGroup gioi = new ButtonGroup();
-
+	public static JTextField ten;
+	public static JTextField email;
+	public static final ButtonGroup chucvu = new ButtonGroup();
+	public static final ButtonGroup gioi = new ButtonGroup();
+	public static JTextField sohieu;
+	public static JPasswordField pass;
+	public static JDateChooser date ;
+	public static JRadioButton rdbtnDuocsi = new JRadioButton("Dược sĩ");
+	public static JRadioButton rdbtnKimKho = new JRadioButton("Kiểm kho");
+	public static JRadioButton rdbtnNam = new JRadioButton("Nam");
+	public static JRadioButton rdbtnNu = new JRadioButton("Nữ");
 	/**
 	 * Create the panel.
 	 */
@@ -58,19 +65,14 @@ public class themnhanvienform extends JPanel {
 		roundPanel.setRoundBottomLeft(30);
 		roundPanel.setBackground(Color.LIGHT_GRAY);
 		
-		tensp = new JTextField();
-		tensp.setColumns(10);
+		ten = new JTextField();
+		ten.setColumns(10);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Tên nhân viên");
 		
 		JLabel lblNewLabel_2 = new JLabel("Email");
 		
-		JLabel lblNewLabel_2_1 = new JLabel("Số điện thoại");
-		
 		JLabel lblNewLabel_2_2 = new JLabel("Ngày vào");
-		
-		hoatchat = new JTextField();
-		hoatchat.setColumns(10);
 		
 		JLabel lblNewLabel_1_2_1 = new JLabel("Password");
 		
@@ -108,89 +110,110 @@ public class themnhanvienform extends JPanel {
 							.addContainerGap()
 							.addComponent(rndbtnBack, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
 					.addGap(18)
-					.addComponent(roundPanel, GroupLayout.PREFERRED_SIZE, 422, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(174, Short.MAX_VALUE))
+					.addComponent(roundPanel, GroupLayout.PREFERRED_SIZE, 451, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(145, Short.MAX_VALUE))
 		);
 		
 		RoundButton rndbtnThm = new RoundButton();
+		rndbtnThm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				themnhanviencontrol.add();
+			}
+		});
 		rndbtnThm.setFocusPainted(false);
 		rndbtnThm.setText("Thêm");
 		rndbtnThm.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		final JLabel lblsohieu = new JLabel("Số hiệu bằng dược sĩ");
+		email = new JTextField();
+		email.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		date = new JDateChooser();
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		
-		JDateChooser dateChooser = new JDateChooser();
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Dược sĩ");
-		chucvu.add(rdbtnNewRadioButton);
-		rdbtnNewRadioButton.setSelected(true);
-		
-		JRadioButton rdbtnKimKho = new JRadioButton("Kiểm kho");
+
+		rdbtnDuocsi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sohieu.setVisible(true);
+				lblsohieu.setVisible(true);
+			}
+		});
+		chucvu.add(rdbtnDuocsi);
+		rdbtnDuocsi.setSelected(true);
+
+		rdbtnKimKho.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sohieu.setVisible(false);
+				sohieu.setText("");
+				lblsohieu.setVisible(false);
+			}
+		});
 		chucvu.add(rdbtnKimKho);
 		
 		JLabel lblNewLabel_1_2_1_1 = new JLabel("Chức vụ");
 		
 		JLabel lblNewLabel_1_2_1_1_1 = new JLabel("Giới tính");
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Nam");
-		gioi.add(rdbtnNewRadioButton_1);
-		rdbtnNewRadioButton_1.setSelected(true);
 		
-		JRadioButton rdbtnKimKho_1 = new JRadioButton("Nữ");
-		gioi.add(rdbtnKimKho_1);
+		gioi.add(rdbtnNam);
+		rdbtnNam.setSelected(true);
+		
+		
+		gioi.add(rdbtnNu);
+		
+		sohieu = new JTextField();
+		sohieu.setColumns(10);
+		
+		pass = new JPasswordField();
 		GroupLayout gl_roundPanel = new GroupLayout(roundPanel);
 		gl_roundPanel.setHorizontalGroup(
 			gl_roundPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_roundPanel.createSequentialGroup()
-					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addGap(50)
-							.addComponent(lblNewLabel_1_1, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-							.addGap(10)
-							.addComponent(tensp, GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
-						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addGap(50)
-							.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-							.addGap(10)
-							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
-						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addGap(50)
-							.addComponent(lblNewLabel_2_1, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-							.addGap(10)
-							.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
-						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addGap(50)
-							.addComponent(lblNewLabel_2_2, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-							.addGap(10)
-							.addComponent(dateChooser, GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
-						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addGap(50)
-							.addComponent(lblNewLabel_1_2_1, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-							.addGap(10)
-							.addComponent(hoatchat, GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE))
-						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addGap(50)
-							.addComponent(lblNewLabel_1_2_1_1, GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-							.addGap(18)
-							.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(rdbtnNewRadioButton, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-								.addComponent(rdbtnKimKho, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-							.addGap(78)
-							.addComponent(lblNewLabel_1_2_1_1_1, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-							.addGap(18)
-							.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(rdbtnNewRadioButton_1, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-								.addComponent(rdbtnKimKho_1, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
-							.addGap(62))
-						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addGap(244)
-							.addComponent(rndbtnThm, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-							.addGap(173)))
+					.addGap(50)
+					.addComponent(lblNewLabel_1_1, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(ten, GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
 					.addGap(62))
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGap(50)
+					.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(email, GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+					.addGap(62))
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGap(50)
+					.addComponent(lblNewLabel_2_2, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(date, GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+					.addGap(62))
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGap(50)
+					.addComponent(lblNewLabel_1_2_1, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+					.addGap(4)
+					.addComponent(pass, GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
+					.addGap(62))
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGap(50)
+					.addComponent(lblNewLabel_1_2_1_1, GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+					.addGap(18)
+					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(rdbtnDuocsi, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+						.addComponent(rdbtnKimKho, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(78)
+					.addComponent(lblNewLabel_1_2_1_1_1, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+					.addGap(18)
+					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(rdbtnNam, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+						.addComponent(rdbtnNu, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
+					.addGap(124))
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGap(50)
+					.addComponent(lblsohieu, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(sohieu, GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+					.addGap(62))
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGap(240)
+					.addComponent(rndbtnThm, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+					.addGap(239))
 		);
 		gl_roundPanel.setVerticalGroup(
 			gl_roundPanel.createParallelGroup(Alignment.LEADING)
@@ -198,40 +221,42 @@ public class themnhanvienform extends JPanel {
 					.addGap(54)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addComponent(tensp, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+						.addComponent(ten, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
 					.addGap(11)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
-					.addGap(11)
-					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_2_1, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+						.addComponent(email, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
 					.addGap(11)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNewLabel_2_2, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
-					.addGap(11)
+						.addComponent(date, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+					.addGap(6)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_1_2_1, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-						.addComponent(hoatchat, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
-					.addGap(7)
+						.addGroup(gl_roundPanel.createSequentialGroup()
+							.addGap(5)
+							.addComponent(lblNewLabel_1_2_1, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+						.addComponent(pass, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_roundPanel.createSequentialGroup()
 							.addGap(12)
 							.addComponent(lblNewLabel_1_2_1_1, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addComponent(rdbtnNewRadioButton)
+							.addComponent(rdbtnDuocsi)
 							.addGap(3)
 							.addComponent(rdbtnKimKho))
 						.addGroup(gl_roundPanel.createSequentialGroup()
 							.addGap(12)
 							.addComponent(lblNewLabel_1_2_1_1_1, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_roundPanel.createSequentialGroup()
-							.addComponent(rdbtnNewRadioButton_1)
+							.addComponent(rdbtnNam)
 							.addGap(3)
-							.addComponent(rdbtnKimKho_1)))
-					.addGap(25)
+							.addComponent(rdbtnNu)))
+					.addGap(6)
+					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblsohieu, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+						.addComponent(sohieu, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+					.addGap(47)
 					.addComponent(rndbtnThm, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		roundPanel.setLayout(gl_roundPanel);

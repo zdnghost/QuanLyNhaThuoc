@@ -27,6 +27,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class dstoaform extends JPanel {
 	public static TableRowSorter sorter;
@@ -91,8 +93,7 @@ public class dstoaform extends JPanel {
 		RoundButton rndbtnLmMi_1 = new RoundButton();
 		rndbtnLmMi_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dstoacontrol.filter(ma.getText().trim(),user.getSelectedItem().toString(),date.getDate());
-				
+				dstoacontrol.filter(ma.getText().trim(),user.getSelectedItem().toString(),date.getDate());	
 			}
 		});
 		rndbtnLmMi_1.setText("Tìm kiếm");
@@ -135,6 +136,12 @@ public class dstoaform extends JPanel {
 		roundPanel_1.add(scrollPane, BorderLayout.CENTER);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dstoacontrol.load(table.getValueAt(table.getSelectedRow(),0).toString().trim());
+			}
+		});
 		scrollPane.setViewportView(table);
 		GroupLayout gl_roundPanel = new GroupLayout(roundPanel);
 		gl_roundPanel.setHorizontalGroup(

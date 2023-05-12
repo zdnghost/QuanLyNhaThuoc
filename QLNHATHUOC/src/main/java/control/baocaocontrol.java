@@ -33,8 +33,16 @@ public class baocaocontrol {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+		sql="select count(*) FROM KHOTHUOC where HANSUDUNG<GETDATE() and SLTON>0";
+		res = db.getquery(sql);
+		try {
+			while (res.next()) {
+			hetsudung=res.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		sql="select count(*),isnull(sum(TONGCONG),0) from fn_getListPhieu() where MONTH(GETDATE())=MONTH(NGAYNHAP) and year(GETDATE())=year(NGAYNHAP)";
 		res = db.getquery(sql);
 		try {
@@ -58,7 +66,7 @@ public class baocaocontrol {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		sql="select count(*) from dbo.fn_getDATANhanvien() where Duocsi=0";
+		sql="select count(*) from dbo.fn_getDATANhanvien() where Duocsi!=0";
 		res = db.getquery(sql);
 		try {
 			while (res.next()) {
@@ -68,12 +76,11 @@ public class baocaocontrol {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		sql="select count(*) from dbo.fn_getDATANhanvien() where Kiemkho=0";
+		sql="select count(*) from dbo.fn_getDATANhanvien() where Kiemkho!=0";
 		res = db.getquery(sql);
 		try {
 			while (res.next()) {
 			nvkk=res.getInt(1);
-			
 			}
 			db.disconect();
 		} catch (SQLException e) {

@@ -27,6 +27,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class dsnhacungcapform extends JPanel {
 	public static  JTextField ma;
@@ -34,6 +36,7 @@ public class dsnhacungcapform extends JPanel {
 	public static DefaultTableModel model;
 	public static JTextField ten;
 	public static TableRowSorter sorter;
+	public static RoundButton rndbtnThm;
 	/**
 	 * Create the panel.
 	 */
@@ -45,10 +48,7 @@ public class dsnhacungcapform extends JPanel {
 		panel.setBackground(SystemColor.activeCaption);
 		add(panel, BorderLayout.CENTER);
 		
-		RoundPanel btnpanel = new RoundPanel();
-		btnpanel.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		RoundButton rndbtnThm = new RoundButton();
+		rndbtnThm = new RoundButton();
 		rndbtnThm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dsnhacungcapcontrol.add();
@@ -56,7 +56,6 @@ public class dsnhacungcapform extends JPanel {
 		});
 		rndbtnThm.setText("Thêm");
 		rndbtnThm.setFocusPainted(false);
-		btnpanel.add(rndbtnThm);
 		
 		RoundPanel roundPanel_1 = new RoundPanel();
 		roundPanel_1.setLayout(new BorderLayout(0, 0));
@@ -95,7 +94,7 @@ public class dsnhacungcapform extends JPanel {
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(btnpanel, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+							.addComponent(rndbtnThm, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(20)
 							.addComponent(roundPanel_1, GroupLayout.DEFAULT_SIZE, 1173, Short.MAX_VALUE)))
@@ -113,7 +112,7 @@ public class dsnhacungcapform extends JPanel {
 					.addGap(11)
 					.addComponent(roundPanel_1, GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnpanel, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addComponent(rndbtnThm, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 					.addGap(24))
 		);
 		
@@ -121,6 +120,12 @@ public class dsnhacungcapform extends JPanel {
 		roundPanel_1.add(scrollPane, BorderLayout.CENTER);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dsnhacungcapcontrol.load(table.getValueAt(table.getSelectedRow(),0).toString());
+			}
+		});
 		scrollPane.setViewportView(table);
 		
 		JLabel lblNewLabel_1 = new JLabel("Tên nhà cung cấp");

@@ -1,8 +1,15 @@
 package model.user;
 
+import java.beans.JavaBean;
+import java.nio.charset.Charset;
+import java.rmi.server.LoaderHandler;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.Date;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
 import databese.db;
 
@@ -122,9 +129,10 @@ public class nhanvien {
 			}
 		}
 		public void load(int ma) {
-			db.conect();
+			
 			ResultSet res = db.getquery("SELECT* FROM NHANVIEN left join ADMIN on ADMIN.MANV=NHANVIEN.MANV where NHANVIEN.MANV="+ma+"");
 			try {
+				db.conect();
 				while (res.next()) {
 				this.ma=res.getInt(1);
 				ten=res.getString(2);
@@ -153,4 +161,145 @@ public class nhanvien {
 	}
 	public void signin() {
 	}
+	public void add() {
+		try {
+			db.conect();
+			String sql="INSERT INTO NHANVIEN VALUES(?,?,?,?,?,?)";
+			PreparedStatement pres=db.con.prepareStatement(sql);
+			pres.setString(1, ten);
+			pres.setBoolean(2,phai);
+			pres.setDate(3,new java.sql.Date(ngayvao.getTime()));
+			pres.setString(4, email);
+			pres.setNull(5,Types.NCHAR);
+			pres.setString(6, password);
+			pres.execute();
+			db.disconect();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void addnv() {
+		try {
+			db.conect();
+			load(getEmail());
+			String sql="INSERT INTO KIEMKHO VALUES(?)";
+			PreparedStatement pres=db.con.prepareStatement(sql);
+			pres.setInt(1, ma);
+			pres.execute();
+			db.disconect();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void luumaxacnhan() {
+		if(maxacnhan==null) {
+			String sql="UPDATE NHANVIEN SET XACNHAN=? where MANV=?";
+		    String ma =randomstring(8);
+			try {
+				db.conect();
+				PreparedStatement pres=db.con.prepareCall(sql);
+				pres.setString(1,ma);
+				pres.setInt(2,this.ma);
+				pres.execute();
+				db.disconect();
+				load(getEmail());
+				return;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(maxacnhan.trim().equals("")) {
+			String sql="UPDATE NHANVIEN SET XACNHAN=? where MANV=?";
+		    String ma =randomstring(8);
+			try {
+				db.conect();
+				PreparedStatement pres=db.con.prepareCall(sql);
+				pres.setString(1,ma);
+				pres.setInt(2,this.ma);
+				pres.execute();
+				db.disconect();
+				load(getEmail());
+				return;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	} 
+	public boolean dungmaxacnhan(String ma) {
+		if(!ma.equals(getMaxacnhan().trim())) {
+			return false;
+		}
+		String sql="UPDATE NHANVIEN SET XACNHAN=? where MANV=?";
+		try {
+			db.conect();
+			PreparedStatement pres=db.con.prepareCall(sql);
+			pres.setString(1,"");
+			pres.setInt(2,this.ma);
+			pres.execute();
+			db.disconect();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		load(getEmail());
+		return true;
+	}
+	public static String randomstring(int n) {
+		String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+		         + "0123456789"
+		         + "abcdefghijklmnopqrstuvxyz";
+		StringBuilder sb = new StringBuilder(n);
+		  for (int i = 0; i < n; i++) {
+		 
+		   // generate a random number between
+		   // 0 to AlphaNumericString variable length
+		   int index
+		    = (int)(AlphaNumericString.length()
+		      * Math.random());
+		 
+		   // add Character one by one in end of sb
+		   sb.append(AlphaNumericString
+		      .charAt(index));
+		  }
+		 
+		  return sb.toString();
+	}
+	public void changePass(String pass) {
+		String sql="UPDATE NHANVIEN SET PASSWORD=? where MANV=?";
+		try {
+			db.conect();
+			PreparedStatement pres=db.con.prepareCall(sql);
+			pres.setString(1,pass);
+			pres.setInt(2,this.ma);
+			pres.execute();
+			db.disconect();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		load(getMa());
+
+	}
+	public void changeInfo(String name,String email) {
+		String sql="UPDATE NHANVIEN SET TENNV=?,EMAIL=? where MANV=?";
+		try {
+			db.conect();
+			PreparedStatement pres=db.con.prepareCall(sql);
+			pres.setString(1,name);
+			pres.setString(2,email);
+			pres.setInt(3,this.ma);
+			pres.execute();
+			db.disconect();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		load(getMa());
+
+	}
+	
 }

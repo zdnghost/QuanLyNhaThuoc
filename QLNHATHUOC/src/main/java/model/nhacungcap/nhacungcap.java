@@ -1,9 +1,12 @@
 package model.nhacungcap;
 
 import java.rmi.server.LoaderHandler;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import databese.db;
 
@@ -79,5 +82,49 @@ public class nhacungcap {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public boolean add() {
+		try {
+			String sql="INSERT INTO NHACUNGCAP VALUES(?,?,?,?,?,?)";
+			db.conect();
+			PreparedStatement pres=db.con.prepareStatement(sql);
+			pres.setString(1, ma);
+			pres.setString(2, ten);
+			pres.setString(3, dc);
+			pres.setString(4, sdt);
+			pres.setString(5, madoanhnghiep);
+			pres.setString(6, email);
+			pres.execute();
+			db.disconect();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,"Thêm không thành công");
+			return false;
+		}
+		
+	}
+	public boolean update() {
+		try {
+			String sql="update NHACUNGCAP set TENCTY=? ,DCVANPHONG=? ,SDT=?, MADOANHNGHIEP=? ,EMAIL=?  where MACTY=?";
+			db.conect();
+			PreparedStatement pres=db.con.prepareStatement(sql);
+			pres.setString(6, ma);
+			pres.setString(1, ten);
+			pres.setString(2, dc);
+			pres.setString(3, sdt);
+			pres.setString(4, madoanhnghiep);
+			pres.setString(5, email);
+			pres.execute();
+			db.disconect();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,"Cập nhật không thành công");
+			return false;
+		}
+		
 	}
 }

@@ -1,17 +1,18 @@
  package form.main;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatLightLaf;
-
+import model.user.*;
+import control.login.logincontrol;
 import control.menu.menucontrol;
+import form.thongtincanhanform;
 import form.baocao.thongkeform;
 import form.home.homeform;
 import form.ketoa.tabketoa;
+import form.login.login;
 import form.nhacungcap.tabnhacungcap;
 import form.nhanvien.tabnhanvien;
 import form.nhaphang.tabnhaphang;
@@ -22,19 +23,26 @@ import model.thuoc.kho;
 import model.thuoc.listdonvi;
 import model.thuoc.listphanloai;
 import model.toathuoc.listtoa;
-import model.user.listnhanvien;
 import form.menu.menuslide;
 import java.awt.Color;
+import java.awt.EventQueue;
+
 import swing.button.RoundButton;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTabbedPane;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-public class testmenu extends JFrame {
+public class Mainframe extends JFrame {
 	 //model
+	 public static nhanvien user=null;
 	 public static kho kho=new kho();
 	 public static listdonvi listdv=new listdonvi();
 	 public static listphanloai listpl=new listphanloai();
@@ -48,35 +56,25 @@ public class testmenu extends JFrame {
 	 private JPanel panel = new JPanel();
 	 public static JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.RIGHT);
 	 
-	 public tabnhacungcap nhacungcap=new tabnhacungcap();
-	 public tabnhaphang nhaphang= new tabnhaphang();
-	 public tabketoa ketoa= new tabketoa();  
-	 public tabnhanvien nhanvien= new tabnhanvien();
-	 public tabkhothuoc thuoc= new tabkhothuoc();
-	 public homeform home=new homeform();
-	 public thongkeform thongke=new thongkeform();
 	
+	 public static tabnhaphang nhaphang= new tabnhaphang();
+	 public static tabketoa ketoa= new tabketoa();  
+	 public static tabnhanvien nhanvien= new tabnhanvien();
+	 public static tabkhothuoc thuoc= new tabkhothuoc();
+	 public static homeform home=new homeform();
+	 public static thongkeform thongke=new thongkeform();
+	 public static tabnhacungcap nhacungcap=new tabnhacungcap();
+	 public static thongtincanhanform tt=new thongtincanhanform();
+	 public static JLabel lblUser;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		
-			EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					testmenu frame = new testmenu();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
-	public testmenu() {
+	public Mainframe(nhanvien user) {
+		Mainframe.user=user;
+		menucontrol.Phanquyen();
 		FlatLightLaf.setup();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 800);
@@ -100,23 +98,33 @@ public class testmenu extends JFrame {
 		rndbtnngXut.setText("Đăng xuất");
 		rndbtnngXut.setBounds(1137, 11, 117, 30);
 		panel.add(rndbtnngXut);
-		
+		rndbtnngXut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Mainframe.user=null;
+				login frame = new login();
+				frame.setVisible(true);
+				dispose();
+			}
+		});
 		JPanel panel_1 = new JPanel();
 		panel_1.setOpaque(false);
 		panel_1.setBounds(942, 0, 185, 52);
 		panel.add(panel_1);
 		panel_1.setLayout(new GridLayout(2, 0, 0, 0));
-		
 		JLabel lblUserInformation = new JLabel("Người dùng :");
 		lblUserInformation.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUserInformation.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_1.add(lblUserInformation);	
-		//Nguyen Hoang Tuan
-		JLabel lblUser = new JLabel("Luong Gia Tuan");
+		lblUser = new JLabel(Mainframe.user.getTen());
+		lblUser.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				menucontrol.Thongtin();
+			}
+		});
 		lblUser.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUser.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_1.add(lblUser);
-		
 		tabbedPane.setBorder(null);
 		tabbedPane.setRequestFocusEnabled(false);
 		tabbedPane.setBounds(50, 50, 1239, 711);
@@ -128,7 +136,20 @@ public class testmenu extends JFrame {
 		tabbedPane.addTab("",ketoa);
 		tabbedPane.addTab("",nhanvien);
 		tabbedPane.addTab("",thongke);
+		tabbedPane.addTab("",tt);
 		menucontrol.Home();
+		tabbedPane.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				home.setSize(tabbedPane.getWidth()-25,tabbedPane.getHeight());
+				thuoc.setSize(tabbedPane.getWidth()-25,tabbedPane.getHeight());
+				nhaphang.setSize(tabbedPane.getWidth()-25,tabbedPane.getHeight());
+				nhacungcap.setSize(tabbedPane.getWidth()-25,tabbedPane.getHeight());
+				ketoa.setSize(tabbedPane.getWidth()-25,tabbedPane.getHeight());
+				nhanvien.setSize(tabbedPane.getWidth()-25,tabbedPane.getHeight());
+				thongke.setSize(tabbedPane.getWidth()-25,tabbedPane.getHeight());
+			}
+		});
 	}
 	
 }
