@@ -1,25 +1,15 @@
 package control.nhanvien;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-
 import control.baocaocontrol;
 import control.ketoa.dstoacontrol;
-import databese.db;
-import form.ketoa.dstoaform;
 import form.main.Mainframe;
 import form.nhanvien.tabnhanvien;
 import form.nhanvien.themnhanvienform;
-import form.nhaphang.dsnhaphangform;
-import form.nhaphang.tabnhaphang;
 import model.user.duocsi;
 import model.user.nhanvien;
 
@@ -27,6 +17,10 @@ public class themnhanviencontrol {
 
 	public static void back() {
 		tabnhanvien.tabbedPane.setSelectedIndex(0);
+		themnhanvienform.ten.setText("");
+		themnhanvienform.email.setText("");
+		themnhanvienform.sohieu.setText("");
+		themnhanvienform.pass.setText("");
 	}
 	public static void add() {
 		String ten=themnhanvienform.ten.getText().trim();

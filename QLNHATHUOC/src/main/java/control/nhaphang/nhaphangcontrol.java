@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 import control.baocaocontrol;
 import control.ketoa.dstoacontrol;
+import form.ketoa.ketoaform;
 import form.main.Mainframe;
 import form.nhaphang.nhaphangform;
 import form.nhaphang.tabnhaphang;
@@ -20,11 +21,18 @@ import model.phieunhap.chitiet;
 import model.phieunhap.thongtinphieu;
 import model.thuoc.id;
 import model.thuoc.thuoc;
+import model.toathuoc.thongtintoa;
 
 public class nhaphangcontrol {
 
 	public static void back() {
 		tabnhaphang.tabbedPane.setSelectedIndex(0);
+		nhaphangform.maphieu.setText("");
+		nhaphangform.nhacungcap.setText("");
+		nhaphangform.mathuoc.setText("");
+		nhaphangform.date.setDate(null);;
+		nhaphangform.dongia.setText("");
+		newtable();
 	}
 	public static void newtable() {
 		DefaultTableModel model =new DefaultTableModel(new Object[][] {},
@@ -122,6 +130,14 @@ public class nhaphangcontrol {
 			JOptionPane.showMessageDialog(null,"Vui lòng nhập mã phiếu");
 			return;
 		}
+		
+		for(thongtinphieu a:Mainframe.listp.list) {
+			if(nhaphangform.maphieu.getText().trim().equals(a.getMaphieu().trim())) {
+				JOptionPane.showMessageDialog(null,"Mã toa này đã tồn tại");
+				return;
+			}
+			}
+		
 		if(nhaphangform.nhacungcap.getText().trim().equals("")) {
 			JOptionPane.showMessageDialog(null,"Vui lòng nhập nhà cung cấp");
 			return;

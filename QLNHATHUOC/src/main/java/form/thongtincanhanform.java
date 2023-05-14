@@ -239,9 +239,9 @@ public class thongtincanhanform extends JPanel {
 					.addGap(53))
 		);
 		gl_roundPanel.setVerticalGroup(
-			gl_roundPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_roundPanel.createSequentialGroup()
-					.addContainerGap(54, Short.MAX_VALUE)
+			gl_roundPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGap(54)
 					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 						.addComponent(ten, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
@@ -265,7 +265,7 @@ public class thongtincanhanform extends JPanel {
 						.addComponent(sh, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
 					.addGap(11)
 					.addComponent(rndbtnThm, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18))
+					.addContainerGap(18, Short.MAX_VALUE))
 		);
 		roundPanel.setLayout(gl_roundPanel);
 		panel.setLayout(gl_panel);

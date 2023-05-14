@@ -29,9 +29,4 @@ public class listtoa {
 		}
 		
 	}
-	public static void main(String[] args) {
-		listtoa a=new listtoa();
-
-		System.out.print(a.list.get(0).getMaphieu());
-	}
 }

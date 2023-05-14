@@ -18,6 +18,12 @@ public class themnhacungcapcontrol {
 
 	public static void back() {
 		tabnhacungcap.tabbedPane.setSelectedIndex(0);
+		themnhacungcapform.ma.setText("");
+		themnhacungcapform.ten.setText("");
+		themnhacungcapform.dc.setText("");
+		themnhacungcapform.mdn.setText("");
+		themnhacungcapform.sdt.setText("");
+		themnhacungcapform.email.setText("");;
 	}
 	public static void add() {
 		String ma= themnhacungcapform.ma.getText().trim();

@@ -19,9 +19,13 @@ public class themthuoccontrol {
 
 	public static void back() {
 		tabkhothuoc.tabbedPane.setSelectedIndex(0);
-	}
-	public static void clear() {
-		
+		newlist();
+		themthuocform.gia.setText("");
+		themthuocform.masp.setText("");
+		themthuocform.tensp.setText("");
+		themthuocform.hamluong.setText("");
+		themthuocform.hoatchat.setText("");
+		themthuocform.quydoi.setText("");
 	}
 	public static void newlist() {
 		themthuocform.cbphanloai = new DefaultComboBoxModel();

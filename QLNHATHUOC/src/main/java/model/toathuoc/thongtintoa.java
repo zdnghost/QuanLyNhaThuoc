@@ -66,7 +66,7 @@ public class thongtintoa {
 				JOptionPane.showMessageDialog(null,"Cập nhật thất bại");
 				return;
 			}
-			String sql1 = "INSERT INTO TOATHUOC VALUES(?,?,?,?,?)";
+			String sql1 = "INSERT INTO TOATHUOC VALUES(?,?,?,?)";
 			String sql2="INSERT INTO CHITIETTOA VALuES(?,?,?,?,?,?,?)";
 			db.conect();
 				try{

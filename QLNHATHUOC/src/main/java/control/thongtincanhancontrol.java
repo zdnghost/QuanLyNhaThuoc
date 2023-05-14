@@ -26,17 +26,21 @@ public class thongtincanhancontrol {
 		gt="Nam";
 		else
 		gt="Nữ";
-		if(a.getClass()==duocsi.class) {
-			cv="Dược sĩ";
+		
+		if (a.isAdmin()) {
+			cv="Admin";
 			duocsi b=(duocsi) a;
 			sh=b.getMahieu();
 			thongtincanhanform.lblsohieu.setVisible(true);
 			thongtincanhanform.sh.setVisible(true);
+			
 		}
-		else if (a.isAdmin()) {
-			cv="Admin";
-			thongtincanhanform.lblsohieu.setVisible(false);
-			thongtincanhanform.sh.setVisible(false);
+		else if(a.getClass()==duocsi.class) {
+			cv="Dược sĩ";
+			duocsi b=(duocsi) a;
+			sh=b.getMahieu();  
+			thongtincanhanform.lblsohieu.setVisible(true);
+			thongtincanhanform.sh.setVisible(true);
 		}
 		else {
 			cv="Nhân viên";

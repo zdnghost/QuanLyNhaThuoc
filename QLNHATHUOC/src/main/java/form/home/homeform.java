@@ -31,7 +31,7 @@ public class homeform extends JPanel {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 70));
 		
-		JLabel lblNhm = new JLabel("Nhóm 9");
+		JLabel lblNhm = new JLabel("Nhóm 15");
 		lblNhm.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNhm.setFont(new Font("Arial", Font.PLAIN, 45));
 		

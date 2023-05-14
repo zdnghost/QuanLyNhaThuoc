@@ -24,6 +24,11 @@ public class ketoacontrol {
 
 	public static void back() {
 		tabketoa.tabbedPane.setSelectedIndex(0);
+		ketoaform.mathuoc.setText("");
+		ketoaform.mahang.setText("");
+		ketoaform.matoa.setText("");
+		ketoaform.gc.setText("");
+		newtable();
 	}
 	public static void newtable() {
 		DefaultTableModel model =new DefaultTableModel(new Object[][] {},
@@ -204,6 +209,13 @@ public class ketoacontrol {
 			JOptionPane.showMessageDialog(null,"Vui lòng nhập mã toa");
 			return;
 		}
+		
+		for(thongtintoa a:Mainframe.listt.list) {
+		if(ketoaform.matoa.getText().trim().equals(a.getMaphieu().trim())) {
+			JOptionPane.showMessageDialog(null,"Mã toa này đã tồn tại");
+			return;
+		}
+		}
 		DefaultTableModel model= (DefaultTableModel)ketoaform.table.getModel();
 		if(ketoaform.table.getRowCount()<1) {
 			JOptionPane.showMessageDialog(null,"Vui lòng kê thuốc");
@@ -226,6 +238,7 @@ public class ketoacontrol {
 		Mainframe.listt.load();
 		dstoacontrol.newtable();
 		baocaocontrol.baocao();
+		back();
 	}
 	
 }

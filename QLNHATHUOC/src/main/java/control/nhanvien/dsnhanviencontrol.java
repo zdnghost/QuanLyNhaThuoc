@@ -43,11 +43,11 @@ public class dsnhanviencontrol {
 			else 
 				p="nữ";			
 			String cv=null;
-			if(a.getClass()==duocsi.class) {
-				cv="Dược sĩ";
-			}
-			else if (a.isAdmin()) {
+			if(a.isAdmin()) {
 				cv="Admin";
+			}
+			else if (a.getClass()==duocsi.class ) {
+				cv="Dược sĩ";
 			}
 			else {
 				cv="Nhân viên";

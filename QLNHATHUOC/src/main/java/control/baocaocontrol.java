@@ -15,7 +15,6 @@ public class baocaocontrol {
 		int hetsudung=0;
 		int tientoa=0;
 		int tienphieu=0;
-		int doanhthu=0;
 		int nvkk=0;
 		int ds=0;
 		int ncc=0;
@@ -55,7 +54,6 @@ public class baocaocontrol {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		doanhthu=tientoa-tienphieu;
 		sql="select count(*) from fn_getDATANhacungcap()";
 		res = db.getquery(sql);
 		try {
@@ -94,7 +92,6 @@ public class baocaocontrol {
 		thongkeform.lblhetsudung.setText(Integer.toString(hetsudung));
 		thongkeform.lbltongtoa.setText(Integer.toString(tientoa));
 		thongkeform.lbltongphieu.setText(Integer.toString(tienphieu));
-		thongkeform.lbldoanhthu.setText(Integer.toString(doanhthu));
 		thongkeform.lblkk.setText(Integer.toString(nvkk));
 		thongkeform.lblncc.setText(Integer.toString(ncc));
 		thongkeform.lblds.setText(Integer.toString(ds));
