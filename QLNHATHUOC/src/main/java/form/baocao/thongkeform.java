@@ -58,63 +58,89 @@ public class thongkeform extends JPanel {
 					.addComponent(roundPanel, GroupLayout.PREFERRED_SIZE, 634, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(37, Short.MAX_VALUE))
 		);
-		lbltoa.setBounds(30, 44, 341, 183);
 		
 
 		lbltoa.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		lbltoa.setBorder(new TitledBorder(null, "Số toa thuốc bán ra của tháng này", TitledBorder.LEADING, TitledBorder.TOP,new Font("Tahoma", Font.PLAIN, 14), null));
 		lbltoa.setHorizontalAlignment(SwingConstants.CENTER);
-		lblphieunhap.setBounds(408, 44, 341, 183);
 		
 		
 		lblphieunhap.setHorizontalAlignment(SwingConstants.CENTER);
 		lblphieunhap.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		lblphieunhap.setBorder(new TitledBorder(null, "Số đơn hàng nhập vào của tháng này", TitledBorder.LEADING, TitledBorder.TOP,new Font("Tahoma", Font.PLAIN, 14), null));
-		lblhetsudung.setBounds(786, 44, 341, 183);
 		
 		
 		lblhetsudung.setHorizontalAlignment(SwingConstants.CENTER);
 		lblhetsudung.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		lblhetsudung.setBorder(new TitledBorder(null, "Số lô thuốc hết hạn sử dụng", TitledBorder.LEADING, TitledBorder.TOP,new Font("Tahoma", Font.PLAIN, 14), null));
-		lblkk.setBounds(30, 422, 341, 183);
 		
 		
 		lblkk.setHorizontalAlignment(SwingConstants.CENTER);
 		lblkk.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		lblkk.setBorder(new TitledBorder(null, "Nhân viên kiểm kho ", TitledBorder.LEADING, TitledBorder.TOP,new Font("Tahoma", Font.PLAIN, 14), null));
-		lblncc.setBounds(408, 422, 341, 183);
 		
 		
 		lblncc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblncc.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		lblncc.setBorder(new TitledBorder(null, "Nhà cung cấp", TitledBorder.LEADING, TitledBorder.TOP,new Font("Tahoma", Font.PLAIN, 14), null));
-		lblds.setBounds(786, 422, 341, 183);
 		
 		
 		lblds.setHorizontalAlignment(SwingConstants.CENTER);
 		lblds.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		lblds.setBorder(new TitledBorder(null, "Dược sĩ", TitledBorder.LEADING, TitledBorder.TOP,new Font("Tahoma", Font.PLAIN, 14), null));
-		lbltongtoa.setBounds(30, 238, 513, 183);
 		
 		
 		lbltongtoa.setHorizontalAlignment(SwingConstants.CENTER);
 		lbltongtoa.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		lbltongtoa.setBorder(new TitledBorder(null, "Tổng số tiền bán được của tháng này", TitledBorder.LEADING, TitledBorder.TOP,new Font("Tahoma", Font.PLAIN, 14), null));
-		lbltongphieu.setBounds(614, 238, 513, 183);
 		
 		
 		lbltongphieu.setHorizontalAlignment(SwingConstants.CENTER);
 		lbltongphieu.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		lbltongphieu.setBorder(new TitledBorder(null, "Tổng số tiền chi ra để nhập hàng của tháng này", TitledBorder.LEADING, TitledBorder.TOP,new Font("Tahoma", Font.PLAIN, 14), null));
-		roundPanel.setLayout(null);
-		roundPanel.add(lblkk);
-		roundPanel.add(lbltongtoa);
-		roundPanel.add(lbltoa);
-		roundPanel.add(lblphieunhap);
-		roundPanel.add(lblhetsudung);
-		roundPanel.add(lblncc);
-		roundPanel.add(lbltongphieu);
-		roundPanel.add(lblds);
+		GroupLayout gl_roundPanel = new GroupLayout(roundPanel);
+		gl_roundPanel.setHorizontalGroup(
+			gl_roundPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGap(30)
+					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_roundPanel.createSequentialGroup()
+							.addComponent(lbltoa, GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+							.addGap(37)
+							.addComponent(lblphieunhap, GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+							.addGap(37)
+							.addComponent(lblhetsudung, GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE))
+						.addGroup(gl_roundPanel.createSequentialGroup()
+							.addComponent(lbltongtoa, GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+							.addGap(71)
+							.addComponent(lbltongphieu, GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE))
+						.addGroup(gl_roundPanel.createSequentialGroup()
+							.addComponent(lblkk, GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+							.addGap(37)
+							.addComponent(lblncc, GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+							.addGap(37)
+							.addComponent(lblds, GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)))
+					.addGap(30))
+		);
+		gl_roundPanel.setVerticalGroup(
+			gl_roundPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_roundPanel.createSequentialGroup()
+					.addGap(44)
+					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lbltoa, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblphieunhap, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblhetsudung, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lbltongtoa, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lbltongphieu, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE))
+					.addGap(1)
+					.addGroup(gl_roundPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblkk, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblncc, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblds, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)))
+		);
+		roundPanel.setLayout(gl_roundPanel);
 		panel.setLayout(gl_panel);
 		baocaocontrol.baocao();
 	}
