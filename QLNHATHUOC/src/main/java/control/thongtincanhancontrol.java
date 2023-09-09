@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import control.nhaphang.nhaphangcontrol;
 import form.thongtincanhanform;
 import form.main.Mainframe;
@@ -71,8 +73,8 @@ public class thongtincanhancontrol {
 		JOptionPane.showMessageDialog(null,"Đã cập nhật thông tin mới");
 	}
 	public static void doimk() {
-		String mk= new String( thongtincanhanform.password.getPassword()).trim();
-		String xn= new String( thongtincanhanform.comfirm.getPassword()).trim();
+		String mk= new String(thongtincanhanform.password.getPassword()).trim();
+		String xn= new String(thongtincanhanform.comfirm.getPassword()).trim();
 		if(mk.equals("")||xn.equals("")) {
 			JOptionPane.showMessageDialog(null,"Vui lòng nhập đủ");
 			return;
@@ -81,7 +83,7 @@ public class thongtincanhancontrol {
 			JOptionPane.showMessageDialog(null,"Vui lòng nhập xác nhận mật khẩu giống mật khẩu mới");
 			return;
 		}
-		Mainframe.user.changePass(mk);
+		Mainframe.user.changePass(DigestUtils.md5Hex(mk));
 		Mainframe.listnv.load();
 		nhaphangcontrol.newtable();
 		JOptionPane.showMessageDialog(null,"Đã cập nhật mật khẩu mới");
