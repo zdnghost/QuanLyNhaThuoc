@@ -15,6 +15,7 @@ public class tabkhothuoc extends JPanel {
 	 * Create the panel.
 	 */
 	public tabkhothuoc() {
+
 		setSize(1213,707);
 		setLayout(null);
 		tabbedPane.setBounds(0, -35, 1213,742);

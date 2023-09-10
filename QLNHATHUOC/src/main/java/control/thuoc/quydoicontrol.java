@@ -60,13 +60,16 @@ public class quydoicontrol {
 			callSt.setInt(4, idold);
 			callSt.setInt(5, idnew);
 			callSt.setInt(6, sl);
-			callSt.execute();			
+			callSt.execute();
 			db.disconect();
 			Mainframe.kho.load();
 			thongtincontrol.getthongtin(quydoiform.ma,quydoiform.hang,quydoiform.dvht);
-			JOptionPane.showMessageDialog(null,"Đã đổi thành công");
+			JOptionPane.showMessageDialog(null,"Quy đổi thành công");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			if(e.getMessage().trim().equals("sl bi le"))
+			JOptionPane.showMessageDialog(null,"Quy đổi không thành công: \nSố lượng lẻ");
+			if(e.getMessage().trim().equals("sl ko du"))
+			JOptionPane.showMessageDialog(null,"Quy đổi không thành công: \nSố lượng không đủ");
 		}
 	}
 }
