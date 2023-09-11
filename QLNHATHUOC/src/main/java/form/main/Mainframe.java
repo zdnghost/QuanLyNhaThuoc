@@ -73,6 +73,15 @@ public class Mainframe extends JFrame {
 	 * Create the frame.
 	 */
 	public Mainframe(nhanvien user) {
+		 nhaphang= new tabnhaphang();
+		 ketoa= new tabketoa();  
+		 nhanvien= new tabnhanvien();
+		 thuoc= new tabkhothuoc();
+		 home=new homeform();
+		 thongke=new thongkeform();
+		 nhacungcap=new tabnhacungcap();
+		 tt=new thongtincanhanform();
+		 tabbedPane=new JTabbedPane(JTabbedPane.RIGHT);
 		Mainframe.user=user;
 		menucontrol.Phanquyen();
 		FlatLightLaf.setup();
