@@ -26,7 +26,7 @@ public class fogotcontrol {
 		}
 		nhanvien temp=new nhanvien();
 		temp.load(fogot.email.getText().trim());
-		if(temp.getEmail().equals("")||temp.getEmail()==null) {
+		if(temp.getEmail()==null) {
 			JOptionPane.showMessageDialog(null,"Email này không tồn tại");
 			return;
 		}
@@ -102,7 +102,7 @@ public class fogotcontrol {
 		
 			         // Gửi email
 			         Transport.send(message);
-			         System.out.println("Email sent successfully");
+			         JOptionPane.showMessageDialog(null,"Email sent successfully");
 			      } catch (MessagingException e) {
 			         throw new RuntimeException(e);
 			      }
