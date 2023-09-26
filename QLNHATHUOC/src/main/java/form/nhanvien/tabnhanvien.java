@@ -8,12 +8,14 @@ import javax.swing.JTabbedPane;
 
 public class tabnhanvien extends JPanel {
 	public static JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-	public dsnhanvienform ds=new dsnhanvienform();
-	public themnhanvienform add=new themnhanvienform();
+	public static dsnhanvienform ds=new dsnhanvienform();
+	public static themnhanvienform add=new themnhanvienform();
 	/**
 	 * Create the panel.
 	 */
 	public tabnhanvien() {
+		ds=new dsnhanvienform();
+		add=new themnhanvienform();
 		setSize(1213,707);
 		setLayout(null);
 		tabbedPane.setBounds(0, -35, 1213,742);

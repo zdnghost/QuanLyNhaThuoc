@@ -8,9 +8,9 @@ import javax.swing.JTabbedPane;
 
 public class tabnhaphang extends JPanel {
 	public static JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-	public dsnhaphangform ds=new dsnhaphangform();
-	public nhaphangform add=new nhaphangform();
-	public thongtinphieuform tt=new thongtinphieuform();
+	public static dsnhaphangform ds=new dsnhaphangform();
+	public static nhaphangform add=new nhaphangform();
+	public static thongtinphieuform tt=new thongtinphieuform();
 	/**
 	 * Create the panel.
 	 */
