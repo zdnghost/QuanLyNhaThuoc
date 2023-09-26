@@ -129,7 +129,7 @@ public class dsnhaphangform extends JPanel {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dsnhaphangcontrol.load(table.getValueAt(0,0).toString().trim());
+				dsnhaphangcontrol.load(table.getValueAt(table.getSelectedRow(),0).toString().trim());
 			}
 		});
 		scrollPane.setViewportView(table);
