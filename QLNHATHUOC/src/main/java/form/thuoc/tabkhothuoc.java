@@ -15,6 +15,7 @@ public class tabkhothuoc extends JPanel {
 	 * Create the panel.
 	 */
 	public tabkhothuoc() {
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		kho=new khothuocform();
 		them=new themthuocform();
 		info=new thongtinform();

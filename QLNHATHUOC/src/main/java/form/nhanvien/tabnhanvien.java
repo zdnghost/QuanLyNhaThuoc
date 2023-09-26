@@ -14,6 +14,7 @@ public class tabnhanvien extends JPanel {
 	 * Create the panel.
 	 */
 	public tabnhanvien() {
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		ds=new dsnhanvienform();
 		add=new themnhanvienform();
 		setSize(1213,707);

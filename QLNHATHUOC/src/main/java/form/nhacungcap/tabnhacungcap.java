@@ -18,6 +18,7 @@ public class tabnhacungcap extends JPanel {
 		ds=new dsnhacungcapform();
 		add=new themnhacungcapform();
 		tt=new thongtinnhacungcapform();
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		setSize(1213,707);
 		setLayout(null);
 		tabbedPane.setBounds(0, -35, 1213,742);

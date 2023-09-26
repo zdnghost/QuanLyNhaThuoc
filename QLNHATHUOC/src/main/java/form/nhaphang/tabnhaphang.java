@@ -17,6 +17,10 @@ public class tabnhaphang extends JPanel {
 	public tabnhaphang() {
 		setSize(1213,707);
 		setLayout(null);
+		ds=new dsnhaphangform();
+		add=new nhaphangform();
+		tt=new thongtinphieuform();
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0, -35, 1213,742);
 		add(tabbedPane);
 		addComponentListener(new ComponentAdapter() {

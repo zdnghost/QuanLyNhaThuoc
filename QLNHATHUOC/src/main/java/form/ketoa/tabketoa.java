@@ -18,6 +18,7 @@ public class tabketoa extends JPanel {
 		dstoa=new dstoaform();
 		ketoa=new ketoaform();
 		tttoa=new thongtintoaform();
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		setSize(1213,707);
 		setLayout(null);
 		tabbedPane.setBounds(0, -25, 1213,742);
